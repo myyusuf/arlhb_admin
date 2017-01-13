@@ -6,24 +6,25 @@ import Menu from "./app/base/components/Menu";
 import Tabs from "./app/base/components/Tabs";
 import Button from "./app/base/components/Button";
 import UserList from "./app/user/UserList";
+import RoleList from "./app/user/RoleList";
 
 var splitter = new Splitter();
 splitter.render($('#content-inside'));
 
 var data = [
   {
-    label: "User",
+    label: "Security",
     expanded: true,
     items: [
       {
-        id: 'user_list',
-        label: "Daftar User",
+        id: 'role_list',
+        label: "Roles",
         selected: true
       }
     ]
   },
   {
-    label: "Laporan",
+    label: "Report",
     expanded: true,
     items: [
       {
@@ -39,8 +40,8 @@ var tree = new Tree({
   onClick: function(item){
 
    if(!tabs.selectTabByTitle(item.label)){
-    if(item.id == 'user_list'){
-      tabs.add(item.id, item.label, userList);
+    if(item.id == 'role_list'){
+      tabs.add(item.id, item.label, roleList);
     }
    }
 
@@ -48,6 +49,7 @@ var tree = new Tree({
 });
 
 var userList = new UserList();
+var roleList = new RoleList();
 
 var navigationBar = new NavigationBar([{
   title: 'Application',
@@ -61,9 +63,9 @@ navigationBar.render($('#left-content'));
 
 var tabs = new Tabs([
   {
-    id: 'user_list',
-    title: 'Daftar User',
-    content: userList
+    id: 'role_list',
+    title: 'Roles',
+    content: roleList
   }
 ]);
 

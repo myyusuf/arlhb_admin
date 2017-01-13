@@ -46,7 +46,7 @@ export default class EditRoleWindow {
       onValidationSuccess: function(formValue){
         $.ajax({
               method: "PUT",
-              url: "/roles/" + role.code,
+              url: "/roles/" + role.roleId,
               data: JSON.stringify(formValue),
               beforeSend: function(xhr){
                 xhr.setRequestHeader('Accept', 'application/json');
@@ -84,7 +84,7 @@ export default class EditRoleWindow {
         if (r == true) {
           $.ajax({
                 method: "DELETE",
-                url: "/roles/" + role.code,
+                url: "/roles/" + role.roleId,
                 data: { }
               }).done(function() {
                 $("#successNotification").jqxNotification("open");

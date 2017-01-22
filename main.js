@@ -48,6 +48,9 @@ var tree = new Tree({
   }
 });
 
+var menu = new Menu({data: getMenuData()});
+menu.render($('#top-menu'));
+
 var userList = new UserList();
 var roleList = new RoleList();
 

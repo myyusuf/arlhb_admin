@@ -23,6 +23,7 @@ export default class RoleList {
         datafields: [
           { name: 'roleId', type: 'int' },
           { name: 'roleName', type: 'string' },
+          { name: 'description', type: 'string' },
         ],
         id: "roleId",
         url: url
@@ -54,8 +55,9 @@ export default class RoleList {
                     return params.data;
                 },
         columns: [
-          { text: 'Role Id', datafield: 'roleId', width: '50%' },
-          { text: 'Role Name', datafield: 'roleName', width: '50%' }
+          { text: 'Role Id', datafield: 'roleId', width: '30%' },
+          { text: 'Role Name', datafield: 'roleName', width: '30%' },
+          { text: 'Description', datafield: 'description', width: '40%' }
         ],
         groups: []
     }

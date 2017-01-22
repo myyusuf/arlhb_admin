@@ -48,7 +48,28 @@ var tree = new Tree({
   }
 });
 
-var menu = new Menu({data: getMenuData()});
+var menu = new Menu({
+  data: getMenuData(),
+  onClick: function(id) {
+
+    var label = '';
+
+    if (id == '58') {
+      label = 'Roles';
+    } else if (id == '59') {
+      label = 'User';
+    }
+
+    if (!tabs.selectTabByTitle(label)) {
+      if (id == '58') {
+        tabs.add(id, label, roleList);
+      } else if (id == '59') {
+        tabs.add(id, label, userList);
+      }
+    }
+  }
+
+});
 menu.render($('#top-menu'));
 
 var userList = new UserList();

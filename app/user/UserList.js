@@ -22,10 +22,12 @@ export default class UserList {
         datatype: "json",
         datafields: [
           { name: 'id', type: 'int' },
-          { name: 'code', type: 'string' },
-          { name: 'name', type: 'string' },
-          { name: 'userType', type: 'int' },
-          { name: 'description', type: 'string' },
+          { name: 'firstName', type: 'string' },
+          { name: 'lastName', type: 'string' },
+          { name: 'status', type: 'String' },
+          { name: 'depo', type: 'string' },
+          { name: 'time', type: 'date' },
+          { name: 'role', type: 'date' },
         ],
         id: "id",
         url: url
@@ -36,15 +38,8 @@ export default class UserList {
           return data;
     }
 
-    var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
-              var userTypeDescription = "";
 
-              if(value == 1){
-                userTypeDescription = "User Type";
-              }
-
-              return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + ';">' + userTypeDescription + '</span>';
-            }
+    var columnWidth = (100/7) + '%';
 
     var dataGridOptions = {
         width: '100%',
@@ -57,10 +52,13 @@ export default class UserList {
                     return params.data;
                 },
         columns: [
-          { text: 'Kode', datafield: 'code', width: '20%' },
-          { text: 'Nama', datafield: 'name', width: '20%' },
-          { text: 'Tipe', datafield: 'userType', cellsrenderer: cellsrenderer, width: '30%' },
-          { text: 'Deskripsi', datafield: 'description', width: '30%'},
+          { text: 'id', datafield: 'id', width: columnWidth },
+          { text: 'First Name', datafield: 'firstName', width: columnWidth},
+          { text: 'Last Name', datafield: 'lastName', width: columnWidth },
+          { text: 'Status', datafield: 'status', width: columnWidth},
+          { text: 'Depo', datafield: 'depo', width: columnWidth},
+          { text: 'Time', datafield: 'time', width: columnWidth},
+          { text: 'Role', datafield: 'role', width: columnWidth},
         ],
         groups: []
     }

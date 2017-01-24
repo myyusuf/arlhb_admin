@@ -90,21 +90,6 @@ export default class UserList {
       }
     });
 
-    var addUserButton = new Button({
-      title:'Tambah Proyek',
-      template: 'primary',
-      height: 26,
-      onClick: function(){
-        var addUserWindow = new AddUserWindow({
-          onSaveSuccess: function(){
-            _this.dataGrid.refresh();
-          }
-        });
-        addUserWindow.render($('#dialogWindowContainer'));
-        addUserWindow.open();
-      }
-    });
-
     var table = $('<table style="height: 100%; width: 100%; margin: -3px; "></table>');
     var tr = $('<tr></tr>');
     var td = $('<td style="padding: 0; height: 40px;"></td>');
@@ -118,10 +103,10 @@ export default class UserList {
     innerTable.appendTo(td);
     innerTr.appendTo(innerTable);
     innerTd.appendTo(innerTr);
-    addUserButton.render(innerTd);
+    // addUserButton.render(innerTd);
 
-    innerTd = $('<td style="padding-top: 6px; width: 200px; height: 100%;"></td>');
-    innerTd.appendTo(innerTr);
+    // innerTd = $('<td style="padding-top: 6px; width: 200px; height: 100%;"></td>');
+    // innerTd.appendTo(innerTr);
     searchTextBox.render(innerTd);
 
     innerTd = $('<td style="padding-top: 6px; height: 100%; "></td>');

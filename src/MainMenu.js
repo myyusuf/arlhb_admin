@@ -8,26 +8,84 @@ export default class MainMenu extends React.Component {
         super(props);
 
         var data = [
-        {
-            "id": "12",
-            "text": "Account",
-            "parentid": "-1",
-            "subMenuWidth": '250px'
-        },
-        {
-            "text": "Help",
-            "id": "1",
-            "parentid": "-1",
-            "subMenuWidth": '250px'
-        }, {
-            "id": "13",
-            "text": "Profile",
-            "parentid": "12"
-        }, {
-            "id": "14",
-            "text": "Logout",
-            "parentid": "12"
-        }];
+          {
+              "id": "1",
+              "text": "Home",
+              "parentid": "-1",
+              "subMenuWidth": '250px'
+          },
+          {
+              "id": "2",
+              "text": "Customer Payment",
+              "parentid": "-1",
+              "subMenuWidth": '250px'
+          },
+          {
+              "id": "3",
+              "text": "Customer Transaction",
+              "parentid": "-1"
+          },
+          {
+              "id": "4",
+              "text": "Bank Transaction",
+              "parentid": "-1"
+          },
+          {
+              "id": "5",
+              "text": "Administration",
+              "parentid": "-1"
+          },
+          {
+              "id": "51",
+              "text": "Active Sessions",
+              "parentid": "5"
+          },
+          {
+              "id": "52",
+              "text": "Corporate Entity",
+              "parentid": "5"
+          },
+          {
+              "id": "53",
+              "text": "Country Zone",
+              "parentid": "5"
+          },
+          {
+              "id": "54",
+              "text": "Customer",
+              "parentid": "5"
+          },
+          {
+              "id": "55",
+              "text": "Holidays",
+              "parentid": "5"
+          },
+          {
+              "id": "56",
+              "text": "Location",
+              "parentid": "5"
+          },
+          {
+              "id": "57",
+              "text": "Operational Time",
+              "parentid": "5"
+          },
+          {
+              "id": "58",
+              "text": "Role",
+              "parentid": "5"
+          },
+          {
+              "id": "59",
+              "text": "User",
+              "parentid": "5"
+          },
+          {
+              "id": "6",
+              "text": "Report",
+              "parentid": "-1"
+          }
+        ];
 
         var source = {
            datatype: "json",

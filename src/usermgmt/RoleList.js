@@ -60,10 +60,9 @@ export default class RoleList extends React.Component {
 
         return (
           <JqxGrid
-            width={'100%'} height={'100%'} source={this.state.dataAdapter} pageable={true}
-            sortable={true} altrows={true} enabletooltips={true}
-            autoheight={true} editable={true} columns={columns}
-            selectionmode={'multiplecellsadvanced'} theme={'metro'}
+            width={'100%'} height={'calc(100% - 30px)'} source={this.state.dataAdapter} pageable={true}
+            sortable={true} altrows={true} enabletooltips={true} columns={columns}
+            theme={'metro'}
           />
         )
     }

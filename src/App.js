@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 //import JqxCheckBox from 'jqwidgets-framework/jqwidgets-react/react_jqxcheckbox.js';
 
 import MainMenu from './MainMenu';
+import RoleList from './usermgmt/RoleList';
 
 export default class App extends React.Component {
 
@@ -30,16 +31,16 @@ export default class App extends React.Component {
 
         let page = null;
 
-        if (this.state.menuId == 51) {
-            page = <div>Active Sessions</div>;
+        if (this.state.menuId == 58) {
+            page = <RoleList></RoleList>;
         } else {
             page = <div>No Page</div>;
         }
 
         return (
-            <div style={{}}>
+            <div style={{height: '100%'}}>
                 <MainMenu onMenuClick={onMenuClick}/>
-                <div>{page}</div>
+                <div style={{height: '100%'}}>{page}</div>
 
             </div>
         )

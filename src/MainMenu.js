@@ -110,14 +110,13 @@ export default class MainMenu extends React.Component {
 
         this.refs.myMenu.on('itemclick', (e) =>
         {
-           console.log('test');
             this.props.onMenuClick(e);
         });
     }
 
     render() {
         return (
-            <div style={{ height: '300px', width: '100%' }}>
+            <div style={{ height: '30px', width: '100%' }}>
                 <JqxMenu ref='myMenu' source={this.state.records} theme={'metro'} width={'100%'} height={30} />
             </div>
         )

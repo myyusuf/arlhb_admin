@@ -6,21 +6,41 @@ import ReactDOM from 'react-dom';
 
 import MainMenu from './MainMenu';
 
-
 export default class App extends React.Component {
-    componentDidMount() {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            secondsElapsed: 0,
+            menuId: 0
+        };
     }
+    componentDidMount() {}
 
     render() {
+        var _this = this;
+        var onMenuClick = function(e) {
 
-        var onMenuClick = function(e){
-            console.log('Mantap..');
+            console.log(e.args.id);
+            _this.setState((prevState) => ({
+                secondsElapsed: prevState.secondsElapsed + 1,
+                menuId: e.args.id
+            }));
+        }
+
+        let page = null;
+
+        if (this.state.menuId == 51) {
+            page = <div>Active Sessions</div>;
+        } else {
+            page = <div>No Page</div>;
         }
 
         return (
-            <div style={{ height: '300px' }}>
+            <div style={{}}>
                 <MainMenu onMenuClick={onMenuClick}/>
+                <div>{page}</div>
+
             </div>
         )
     }

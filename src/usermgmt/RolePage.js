@@ -1,7 +1,8 @@
 import React from 'react';
 
 import RoleList from './RoleList';
-import RoleEdit from './RoleEdit';
+import RoleForm from './RoleForm';
+import AddWindow from '../base/AddWindow';
 
 export default class RolePage extends React.Component {
 
@@ -18,13 +19,16 @@ export default class RolePage extends React.Component {
 
         let _this = this;
 
-        let editWindow = null;
-        if (this.state.openEditWindow) {
-            editWindow = <RoleEdit></RoleEdit>;
+        let onDoubleClick = function(e) {
+            _this.refs.addRoleWindow.open();
         }
 
-        let onDoubleClick = function(e) {
-            _this.refs.roleEdit.open();
+        let onSave = function(e) {
+            _this.refs.roleForm.validate();
+        }
+
+        let onValidationSuccess = function(role, e) {
+            console.log(role);
         }
 
         return (
@@ -32,7 +36,12 @@ export default class RolePage extends React.Component {
                 height: '100%'
             }}>
                 <RoleList onDoubleClick={onDoubleClick}/>
-                <div><RoleEdit ref='roleEdit'></RoleEdit></div>
+                <div>
+                  <AddWindow ref='addRoleWindow' onSave={onSave}>
+                    <RoleForm ref='roleForm' onValidationSuccess={onValidationSuccess}></RoleForm>
+                  </AddWindow>
+
+                </div>
             </div>
 
         )

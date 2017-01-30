@@ -1,9 +1,7 @@
 import React from 'react';
 
-import JqxWindow from 'jqwidgets-framework/jqwidgets-react/react_jqxwindow.js';
 import JqxInput from 'jqwidgets-framework/jqwidgets-react/react_jqxinput.js';
 import JqxValidator from 'jqwidgets-framework/jqwidgets-react/react_jqxvalidator.js';
-import JqxButton from 'jqwidgets-framework/jqwidgets-react/react_jqxbuttons.js';
 
 export default class RoleForm extends React.Component {
 
@@ -24,7 +22,8 @@ export default class RoleForm extends React.Component {
       this.refs.formValidator.on('validationSuccess', (event) => {
         if(_this.props.onValidationSuccess){
           let role = {
-            roleId: _this.refs.roleIdInput.val()
+            roleId: _this.refs.roleIdInput.val(),
+            roleName: _this.refs.roleNameInput.val()
           };
           _this.props.onValidationSuccess(role, event);
         }
@@ -35,11 +34,13 @@ export default class RoleForm extends React.Component {
 
       let rules =
       [
-        { input: '.roleId', message: 'Role id is required!', action: 'keyup, blur', rule: 'required' }
+        { input: '.roleId', message: 'Role id is required!', action: 'keyup, blur', rule: 'required' },
+        { input: '.roleName', message: 'Role name is required!', action: 'keyup, blur', rule: 'required' }
       ]
 
       if(this.props.role){
         this.refs.roleIdInput.val(this.props.role.roleId);
+        this.refs.roleNameInput.val(this.props.role.roleName);
       }
 
       return (
@@ -50,6 +51,11 @@ export default class RoleForm extends React.Component {
                   <tr>
                       <td>Role Id</td>
                       <td><JqxInput ref='roleIdInput' theme={'metro'} className="roleId text-input" width={200}/></td>
+                      <td><span style={{color: 'red'}}>*</span></td>
+                  </tr>
+                  <tr>
+                      <td>Role Name</td>
+                      <td><JqxInput ref='roleNameInput' theme={'metro'} className="roleName text-input" width={200}/></td>
                       <td><span style={{color: 'red'}}>*</span></td>
                   </tr>
                 </tbody>

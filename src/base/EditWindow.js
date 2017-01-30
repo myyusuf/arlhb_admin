@@ -1,56 +1,46 @@
 import React from 'react';
 
 import JqxWindow from 'jqwidgets-framework/jqwidgets-react/react_jqxwindow.js';
-import JqxInput from 'jqwidgets-framework/jqwidgets-react/react_jqxinput.js';
-import JqxValidator from 'jqwidgets-framework/jqwidgets-react/react_jqxvalidator.js';
 import JqxButton from 'jqwidgets-framework/jqwidgets-react/react_jqxbuttons.js';
-import RoleForm from './RoleForm';
 
-export default class RoleEdit extends React.Component {
+export default class EditWindow extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            roleName: ''
-        };
     }
     componentDidMount() {
+
+      let _this = this;
       this.refs.saveButton.on('click', (event) => {
-        this.refs.roleForm.validate();
+        if(_this.props.onSave){
+          _this.props.onSave();
+        }
       });
     }
 
     open(){
-      this.refs.roleEdit.open();
+      this.refs.addWindow.open();
     }
 
     render() {
-
-      let rules =
-      [
-        { input: '.roleId', message: 'Role id is required!', action: 'keyup, blur', rule: 'required' }
-      ]
-
       return (
-        <JqxWindow ref='roleEdit'
+        <JqxWindow ref='addWindow'
                       width={380} height={180} theme={'metro'} isModal={true}
-                      resizable={false}
-                      showCollapseButton={true} autoOpen={false}>
+                      resizable={false} autoOpen={false}>
           <div>
               <span>
-                  Role Edit
+                  {this.props.title}
               </span>
           </div>
           <div style={{ overflow: 'hidden' }}>
             <table className="register-table">
               <tbody>
                 <tr>
-                    <td><RoleForm ref='roleForm'></RoleForm></td>
+                    <td>{this.props.children}</td>
                 </tr>
                 <tr>
                     <td>
-                        <JqxButton width={60} height={25} ref='saveButton' value='Save' theme={'metro'}/>
+                        <JqxButton width={60} height={25} ref='saveButton' value='Save' theme={'light'} template={'success'}/>
                     </td>
                 </tr>
               </tbody>

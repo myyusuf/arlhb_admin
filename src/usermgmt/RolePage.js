@@ -2,7 +2,7 @@ import React from 'react';
 
 import RoleList from './RoleList';
 import RoleForm from './RoleForm';
-import AddWindow from '../base/AddWindow';
+import EditWindow from '../base/EditWindow';
 
 export default class RolePage extends React.Component {
 
@@ -40,9 +40,9 @@ export default class RolePage extends React.Component {
             }}>
                 <RoleList onDoubleClick={onDoubleClick}/>
                 <div>
-                  <AddWindow ref='editRoleWindow' title={'Edit Role'} onSave={onSave}>
+                  <EditWindow ref='editRoleWindow' title={'Edit Role'} onSave={onSave}>
                     <RoleForm ref='editRoleForm' role={this.state.editedRole} onValidationSuccess={onValidationSuccess}></RoleForm>
-                  </AddWindow>
+                  </EditWindow>
                 </div>
             </div>
 

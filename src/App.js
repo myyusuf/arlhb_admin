@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 //import JqxCheckBox from 'jqwidgets-framework/jqwidgets-react/react_jqxcheckbox.js';
 
 import MainMenu from './MainMenu';
-import RoleList from './usermgmt/RoleList';
+import RolePage from './usermgmt/RolePage';
 
 export default class App extends React.Component {
 
@@ -32,7 +32,7 @@ export default class App extends React.Component {
         let page = null;
 
         if (this.state.menuId == 58) {
-            page = <RoleList></RoleList>;
+            page = <RolePage></RolePage>;
         } else {
             page = <div>No Page</div>;
         }

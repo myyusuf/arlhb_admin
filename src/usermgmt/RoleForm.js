@@ -38,6 +38,10 @@ export default class RoleForm extends React.Component {
         { input: '.roleId', message: 'Role id is required!', action: 'keyup, blur', rule: 'required' }
       ]
 
+      if(this.props.role){
+        this.refs.roleIdInput.val(this.props.role.roleId);
+      }
+
       return (
         <JqxValidator ref='formValidator' rules={rules}>
           <form id='roleForm' action="./">

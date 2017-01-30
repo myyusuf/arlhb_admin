@@ -35,8 +35,13 @@ export default class RoleList extends React.Component {
         };
     }
     componentDidMount() {
+        let _this = this;
         this.refs.roleList.on('rowdoubleclick', (e) => {
-            this.props.onDoubleClick(e);
+
+          let args = e.args;
+          let rowIndex = args.rowindex;
+          let data = _this.refs.roleList.getrowdata(rowIndex);
+          this.props.onDoubleClick(data, e);
         });
     }
 

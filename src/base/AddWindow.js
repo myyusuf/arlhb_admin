@@ -28,11 +28,10 @@ export default class AddWindow extends React.Component {
       return (
         <JqxWindow ref='addWindow'
                       width={380} height={180} theme={'metro'} isModal={true}
-                      resizable={false}
-                      showCollapseButton={true} autoOpen={false}>
+                      resizable={false} autoOpen={false}>
           <div>
               <span>
-                  Add Window
+                  {this.props.title}
               </span>
           </div>
           <div style={{ overflow: 'hidden' }}>

@@ -10,7 +10,7 @@ export default class RolePage extends React.Component {
         super(props);
 
         this.state = {
-            openEditWindow: false
+            editedRole: null
         };
     }
     componentDidMount() {}
@@ -19,12 +19,15 @@ export default class RolePage extends React.Component {
 
         let _this = this;
 
-        let onDoubleClick = function(e) {
-            _this.refs.addRoleWindow.open();
+        let onDoubleClick = function(data, e) {
+            _this.setState({
+              editedRole: data
+            });
+            _this.refs.editRoleWindow.open();
         }
 
         let onSave = function(e) {
-            _this.refs.roleForm.validate();
+            _this.refs.editRoleForm.validate();
         }
 
         let onValidationSuccess = function(role, e) {
@@ -37,10 +40,9 @@ export default class RolePage extends React.Component {
             }}>
                 <RoleList onDoubleClick={onDoubleClick}/>
                 <div>
-                  <AddWindow ref='addRoleWindow' onSave={onSave}>
-                    <RoleForm ref='roleForm' onValidationSuccess={onValidationSuccess}></RoleForm>
+                  <AddWindow ref='editRoleWindow' title={'Edit Role'} onSave={onSave}>
+                    <RoleForm ref='editRoleForm' role={this.state.editedRole} onValidationSuccess={onValidationSuccess}></RoleForm>
                   </AddWindow>
-
                 </div>
             </div>
 

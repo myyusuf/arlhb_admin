@@ -17,6 +17,7 @@ export default class RoleForm extends React.Component {
       this.refs.formValidator.validate(document.getElementById('roleForm'));
     }
     componentDidMount() {
+      console.log('Did mount!!');
       let _this = this;
 
       this.refs.formValidator.on('validationSuccess', (event) => {
@@ -28,6 +29,11 @@ export default class RoleForm extends React.Component {
           _this.props.onValidationSuccess(role, event);
         }
       });
+    }
+
+    componentWillUnmount() {
+      console.log('Unmount!!');
+      $('#roleForm').remove();
     }
 
     render() {

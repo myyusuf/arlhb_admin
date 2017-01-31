@@ -9,10 +9,11 @@ export default class ComboBox {
     this.localData = options.localData;
     this.url = options.url;
     this.dataFields = options.dataFields;
-    this.comboBoxOptions = options.comboBoxOptions;
     this.onChange = options.onChange;
     this.clearSelectionEnabled = options.clearSelectionEnabled;
     this.initialValue = options.value;
+
+    this.jqxOptions = options.jqxOptions;
   }
 
   render(container) {
@@ -24,7 +25,7 @@ export default class ComboBox {
     comboBoxContainer.attr('id', this.id);
 
     if(this.localData){
-      this.comboBoxOptions['source'] = this.localData;
+      this.jqxOptions['source'] = this.localData;
     }else{
       var source =
       {
@@ -36,10 +37,10 @@ export default class ComboBox {
           }
       };
       var dataAdapter = new $.jqx.dataAdapter(source);
-      this.comboBoxOptions['source'] = dataAdapter;
+      this.jqxOptions['source'] = dataAdapter;
     }
 
-    comboBoxContainer.jqxComboBox(this.comboBoxOptions);
+    comboBoxContainer.jqxComboBox(this.jqxOptions);
 
     if(this.onChange){
       comboBoxContainer.on('change', function (event){

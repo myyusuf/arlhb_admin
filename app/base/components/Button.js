@@ -5,6 +5,7 @@ export default class Button {
   constructor(options) {
     this.id = guid();
     this.onClick = options.onClick;
+    this.jqxOptions = options.jqxOptions;
 
     if(options.title){
       this.title = options.title;
@@ -12,52 +13,15 @@ export default class Button {
       this.title = '';
     }
 
-    if(options.width){
-      this.width = options.width;
-    }
-
-    if(options.height){
-      this.height = options.height;
-    }
-
-    if(options.imgSrc){
-      this.imgSrc = options.imgSrc;
-    }
-
-    this.template = options.template;
-    this.theme = options.theme;
   }
 
   render(container) {
     var _this = this;
 
-    var buttonContainer = $('<input type="button" value="' + this.title + '" />');
+    var buttonContainer = $('<input type="button" />');
     buttonContainer.attr('id', this.id);
+    buttonContainer.attr('value', this.title);
     buttonContainer.appendTo(container);
-
-    var buttonOptions = {
-      theme: 'light'
-    };
-
-    if(this.template){
-      buttonOptions['template'] = this.template;
-    }
-
-    if(this.theme){
-      buttonOptions['theme'] = this.theme;
-    }
-
-    if(this.width){
-      buttonOptions['width'] = this.width;
-    }
-
-    if(this.height){
-      buttonOptions['height'] = this.height;
-    }
-
-    if(this.imgSrc){
-      buttonOptions['imgSrc'] = this.imgSrc;
-    }
 
     buttonContainer.jqxButton(buttonOptions);
 

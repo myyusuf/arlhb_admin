@@ -45,6 +45,10 @@ export default class RoleList extends React.Component {
         });
     }
 
+    refresh(){
+      this.refs.roleList.updatebounddata();
+    }
+
     render() {
 
         let columns = [

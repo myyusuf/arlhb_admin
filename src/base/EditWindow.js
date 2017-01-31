@@ -33,6 +33,10 @@ export default class EditWindow extends React.Component {
       this.refs.editWindow.open();
     }
 
+    close(){
+      this.refs.editWindow.close();
+    }
+
     render() {
       return (
         <JqxWindow ref='editWindow'

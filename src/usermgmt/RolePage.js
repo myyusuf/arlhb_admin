@@ -3,6 +3,8 @@ import React from 'react';
 import RoleList from './RoleList';
 import RoleForm from './RoleForm';
 import EditWindow from '../base/EditWindow';
+import SuccessNotification from '../base/SuccessNotification';
+import JqxNotification from 'jqwidgets-framework/jqwidgets-react/react_jqxnotification.js';
 
 export default class RolePage extends React.Component {
 
@@ -31,19 +33,35 @@ export default class RolePage extends React.Component {
         }
 
         let onValidationSuccess = function(role, e) {
-            console.log(role);
+          $.ajax({
+                method: "PUT",
+                url: "/roles/" + role.roleId,
+                data: JSON.stringify(role),
+                beforeSend: function(xhr){
+                  xhr.setRequestHeader('Accept', 'application/json');
+                  xhr.setRequestHeader('Content-Type', 'application/json');
+                }
+              }).done(function() {
+                  _this.refs.successNotification.open();
+                  _this.refs.editRoleWindow.close();
+                  _this.refs.roleList.refresh();
+              }).fail(function( jqXHR, textStatus, errorThrown) {
+
+              });
         }
 
         return (
             <div style={{
                 height: '100%'
             }}>
-                <RoleList onDoubleClick={onDoubleClick}/>
+                <RoleList ref="roleList" onDoubleClick={onDoubleClick}/>
                 <div>
                   <EditWindow ref='editRoleWindow' title={'Edit Role'} onSave={onSave}>
                     <RoleForm ref='editRoleForm' role={this.state.editedRole} onValidationSuccess={onValidationSuccess}></RoleForm>
                   </EditWindow>
                 </div>
+
+                <SuccessNotification ref="successNotification"></SuccessNotification>
             </div>
 
         )

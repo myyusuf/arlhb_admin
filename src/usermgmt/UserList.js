@@ -31,8 +31,11 @@ export default class UserList extends React.Component {
                     name: 'time',
                     type: 'string'
                 }, {
-                    name: 'role',
-                    type: 'string'
+                    name: 'role'
+                }, {
+                    name: 'roleName',
+                    type: 'string',
+                    map: 'role>roleName'
                 }
             ],
             id: "id",
@@ -73,6 +76,18 @@ export default class UserList extends React.Component {
             }, {
                 text: 'Last Name',
                 datafield: 'lastName'
+            }, {
+                text: 'Status',
+                datafield: 'status'
+            }, {
+                text: 'Depo',
+                datafield: 'depo'
+            }, {
+                text: 'Time',
+                datafield: 'time'
+            }, {
+                text: 'Role',
+                datafield: 'roleName'
             }
         ]
 

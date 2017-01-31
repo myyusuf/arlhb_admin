@@ -18,6 +18,7 @@ export default class App extends React.Component {
 
     render() {
         var _this = this;
+
         var onMenuClick = function(e) {
 
             console.log(e.args.id);
@@ -40,7 +41,7 @@ export default class App extends React.Component {
         return (
             <div style={{height: '100%'}}>
                 <MainMenu onMenuClick={onMenuClick}/>
-                <div style={{height: '100%'}}>{page}</div>
+                <div id="pageContainer" style={{height: '100%'}}>{page}</div>
 
             </div>
         )

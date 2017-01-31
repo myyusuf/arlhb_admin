@@ -50,13 +50,32 @@ export default class RolePage extends React.Component {
               });
         }
 
+        let onDelete = function(e){
+
+          var r = confirm("Proses hapus data akan dilakukan!");
+          if (r == true) {
+            let role = _this.refs.editRoleForm.getValue();
+            $.ajax({
+                  method: "DELETE",
+                  url: "/roles/" + role.roleId,
+                  data: { }
+                }).done(function() {
+                  _this.refs.successNotification.open();
+                  _this.refs.editRoleWindow.close();
+                  _this.refs.roleList.refresh();
+                }).fail(function() {
+                });
+          }
+
+        }
+
         return (
             <div style={{
                 height: '100%'
             }}>
                 <RoleList ref="roleList" onDoubleClick={onDoubleClick}/>
                 <div>
-                  <EditWindow ref='editRoleWindow' title={'Edit Role'} onSave={onSave}>
+                  <EditWindow ref='editRoleWindow' title={'Edit Role'} onSave={onSave} onDelete={onDelete}>
                     <RoleForm ref='editRoleForm' role={this.state.editedRole} onValidationSuccess={onValidationSuccess}></RoleForm>
                   </EditWindow>
                 </div>

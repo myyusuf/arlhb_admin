@@ -22,13 +22,19 @@ export default class RoleForm extends React.Component {
 
       this.refs.formValidator.on('validationSuccess', (event) => {
         if(_this.props.onValidationSuccess){
-          let role = {
-            roleId: _this.refs.roleIdInput.val(),
-            roleName: _this.refs.roleNameInput.val()
-          };
+          let role = _this.getValue();
           _this.props.onValidationSuccess(role, event);
         }
       });
+    }
+
+    getValue(){
+      let role = {
+        roleId: this.refs.roleIdInput.val(),
+        roleName: this.refs.roleNameInput.val()
+      };
+
+      return role;
     }
 
     componentWillUnmount() {

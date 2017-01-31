@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//import JqxMenu from 'jqwidgets-framework/jqwidgets-react/react_jqxmenu.js';
-//import JqxCheckBox from 'jqwidgets-framework/jqwidgets-react/react_jqxcheckbox.js';
-
 import MainMenu from './MainMenu';
 import RolePage from './usermgmt/RolePage';
+import UserList from './usermgmt/UserList';
 
 export default class App extends React.Component {
 
@@ -33,6 +31,8 @@ export default class App extends React.Component {
 
         if (this.state.menuId == 58) {
             page = <RolePage></RolePage>;
+        }else if (this.state.menuId == 59) {
+            page = <UserList></UserList>;
         } else {
             page = <div>No Page</div>;
         }

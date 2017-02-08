@@ -2,17 +2,16 @@ import {
   guid
 } from '../Utils';
 
-export default class Menu {
+import Component from "./Component";
+
+export default class Menu extends Component{
 
   constructor(options) {
-    this.id = guid();
+
+    super(options);
+
     this.data = options.data;
     this.onClick = options.onClick;
-  }
-
-  render(container) {
-
-    var _this = this;
 
     var source = {
        datatype: "json",
@@ -23,19 +22,25 @@ export default class Menu {
            { name: 'subMenuWidth' }
        ],
        id: 'id',
-       localdata: _this.data
-   };
+       localdata: this.data
+     };
 
-   var dataAdapter = new $.jqx.dataAdapter(source);
-   dataAdapter.dataBind();
+    var dataAdapter = new $.jqx.dataAdapter(source);
+    dataAdapter.dataBind();
 
-   var records = dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label'}]);
+    this.records = dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label'}]);
+
+  }
+
+  render(container) {
+
+    var _this = this;
 
     var menuContainer = $('<div></div>');
     menuContainer.appendTo(container);
     menuContainer.jqxMenu({
-      theme: 'metro',
-      source: records,
+      theme: this.theme,
+      source: this.records,
       width: '100%',
       height: '100%'
     });

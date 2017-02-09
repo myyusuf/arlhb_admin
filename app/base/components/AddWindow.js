@@ -1,86 +1,41 @@
 import { guid } from '../Utils';
 import Button from './Button';
+import ModalWindow from './ModalWindow';
+import Label from './Label';
 
-export default class AddWindow {
+export default class AddWindow extends ModalWindow{
 
   constructor(options) {
-    this.id = guid();
-    this.content = options.content;
+    super(options);
 
-    if(options.title){
-      this.title = options.title;
+    if(options.content){
+      this.content = options.content;
     }else{
-      this.title = '';
+      this.content = new Label({text: 'No Content'});
     }
-
-    if(options.width){
-      this.width = options.width;
-    }
-
-    if(options.height){
-      this.height = options.height;
-    }
-
-    if(options.buttons){
-
-    }else{
-      this.saveButton = new Button({
-        title: 'Save',
-        template: 'success',
-        onClick: function(){
-          if(options.onSave){
-            options.onSave();
-          }
+    
+    this.saveButton = new Button({
+      title: 'Save',
+      template: 'success',
+      onClick: function(){
+        if(options.onSave){
+          options.onSave();
         }
-      });
+      }
+    });
 
-      this.cancelButton = new Button({
-        title: 'Cancel',
-        onClick: function(){
-          if(options.onCancel){
-            options.onCancel();
-          }
+    this.cancelButton = new Button({
+      title: 'Cancel',
+      onClick: function(){
+        if(options.onCancel){
+          options.onCancel();
         }
-      });
-    }
+      }
+    });
 
   }
 
-  render(container) {
-
-    var _this = this;
-
-    var windowContainer = $('<div></div>');
-    windowContainer.appendTo(container);
-
-    windowContainer.attr('id', this.id);
-
-    var windowTitle = $('<div>' + this.title + '</div>');
-    windowTitle.appendTo(windowContainer);
-
-    var windowContent = $('<div></div>');
-    windowContent.appendTo(windowContainer);
-
-    var windowOptions = {
-      theme: 'metro',
-      isModal: true,
-      autoOpen: false
-    }
-
-    if(this.width){
-      windowOptions['width'] = this.width;
-    }
-
-    if(this.height){
-      windowOptions['height'] = this.height;
-    }
-
-    windowContainer.jqxWindow(windowOptions);
-
-    windowContainer.on('close', function (event) {
-      windowContainer.jqxWindow('destroy');
-    });
-
+  appendWindowContentChild(windowContent){
     var table = $('<table style="height: 100%; width: 100%;"></table>');
     var tr = $('<tr></tr>');
     var td = $('<td></td>');
@@ -108,24 +63,5 @@ export default class AddWindow {
     innerTd = $('<td></td>');
     innerTd.appendTo(innerTr);
     this.saveButton.render(innerTd);
-
-    this.windowContainer = windowContainer;
-
-  }
-
-  getId(){
-    return this.id;
-  }
-
-  open(){
-    this.windowContainer.jqxWindow('open');
-  }
-
-  close(){
-    this.windowContainer.jqxWindow('close');
-  }
-
-  destroy(){
-    this.windowContainer.jqxWindow('destroy');
   }
 }

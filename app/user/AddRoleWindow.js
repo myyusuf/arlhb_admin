@@ -1,18 +1,16 @@
-import { guid } from '../base/Utils';
 import Button from '../base/components/Button';
 import Form from '../base/components/Form';
 import AddWindow from '../base/components/AddWindow';
+import Component from '../base/components/Component';
 import TextBox from '../base/components/TextBox';
 import TextArea from '../base/components/TextArea';
 import Label from '../base/components/Label';
 
-export default class AddRoleWindow {
+export default class AddRoleWindow extends Component{
 
   constructor(options) {
-
+    super(options);
     var _this = this;
-
-    this.id = guid();
 
     var role = options.data;
     this.onSaveSuccess = options.onSaveSuccess;
@@ -68,9 +66,12 @@ export default class AddRoleWindow {
 
     var form = new Form(formOptions);
 
-    this.window = new AddWindow({
+    var jqxOptions = {
       width: 340,
       height: 180,
+    };
+
+    this.window = new AddWindow({
       title: 'Add Role',
       content: form,
       onSave: function(){
@@ -78,16 +79,15 @@ export default class AddRoleWindow {
       },
       onCancel: function(){
         _this.window.close();
-      }
+      },
+      jqxOptions: jqxOptions
     });
 
   }
 
   render(container) {
-
     var _this = this;
     this.window.render(container);
-
   }
 
   open(){

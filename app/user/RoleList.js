@@ -21,13 +21,12 @@ export default class RoleList extends Component{
     };
 
     var onSearch = function(data) {
-      // data['searchTxt'] = searchTextBox.getValue();
+      data['searchTxt'] = _this.searchTxt;
       return data;
     }
 
     var onEditButtonClick = function(value){
       if(options.onEditButtonClick){
-        console.log('value.bounddata : ' + value.bounddata);
         options.onEditButtonClick(value.bounddata);
       }
     }
@@ -89,5 +88,10 @@ export default class RoleList extends Component{
 
   render(container) {
     this.dataGrid.render(container);
+  }
+
+  filter(value){
+    this.searchTxt = value;
+    this.dataGrid.refresh();
   }
 }

@@ -5,7 +5,11 @@ import RolePage from "./app/user/RolePage";
 var rolePage = new RolePage({});
 var mainMenu = new MainMenu({
   onClick: function(e){
-    rolePage.render($('#content'));
+    $('#content').empty();
+    if(e == 2){
+      rolePage.render($('#content'));
+    }
+
   }
 });
 

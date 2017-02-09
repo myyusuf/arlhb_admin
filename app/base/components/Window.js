@@ -25,7 +25,7 @@ export default class Window extends Component{
 
     windowContainer.attr('id', this.id);
 
-    var windowTitle = $('<div>' + this.title + '</div>');
+    var windowTitle = $('<div class="window-title">' + this.title + '</div>');
     windowTitle.appendTo(windowContainer);
 
     var windowContent = $('<div></div>');

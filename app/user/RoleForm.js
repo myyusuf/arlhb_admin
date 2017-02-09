@@ -13,16 +13,22 @@ export default class RoleForm extends Component{
     super(options);
     var _this = this;
 
-    var role = options.data;
+    var role = {};
+
+    if(options.data){
+      role = options.data;
+    }
     this.onSaveSuccess = options.onSaveSuccess;
 
     var roleNameTextBox = new TextBox({
+      value: role.roleName,
       jqxOptions:{
         height: 25,
         width: 270
       }
     });
     var roleDescriptionTextArea = new TextArea({
+      value: role.description,
       jqxOptions:{
         height: 70,
         width: 275

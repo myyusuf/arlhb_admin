@@ -52,6 +52,7 @@ export default class RolePage extends Component{
     });
 
     this.searchText = new SearchText({
+      placeHolder: 'Role Name',
       onSearch: function(value){
         _this.roleList.filter(value);
       }

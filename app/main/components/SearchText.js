@@ -10,7 +10,7 @@ export default class SearchText extends Component{
     var _this = this;
 
     this.searchTextBox = new TextBox({
-      jqxOptions: {placeHolder: 'Role Name', width: 250, height: 24}
+      jqxOptions: {placeHolder: options.placeHolder, width: 250, height: 24}
     });
 
     var jqxOptions = {

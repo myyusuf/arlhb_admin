@@ -1,28 +1,16 @@
-import {
-  guid
-} from '../Utils';
+import Component from "./Component";
 
-export default class TextBox {
+export default class TextBox extends Component{
 
   constructor(options) {
-    this.id = guid();
+    super(options)
 
     if(options.title){
       this.title = options.title;
     }else{
       this.title = 'Button';
     }
-
-    if(options.width){
-      this.width = options.width;
-    }
-
-    if(options.height){
-      this.height = options.height;
-    }
-
-    this.placeHolder = options.placeHolder;
-
+    
     this.initialValue = options.value;
   }
 
@@ -31,23 +19,7 @@ export default class TextBox {
     textBoxContainer.attr('id', this.id);
     textBoxContainer.appendTo(container);
 
-    var textBoxOptions = {
-      theme: 'metro'
-    };
-
-    if(this.width){
-      textBoxOptions['width'] = this.width;
-    }
-
-    if(this.height){
-      textBoxOptions['height'] = this.height;
-    }
-
-    if(this.placeHolder){
-      textBoxOptions['placeHolder'] = this.placeHolder;
-    }
-
-    textBoxContainer.jqxInput(textBoxOptions);
+    textBoxContainer.jqxInput(this.jqxOptions);
 
     if(this.initialValue){
       textBoxContainer.val(this.initialValue);
@@ -61,6 +33,11 @@ export default class TextBox {
   }
 
   getValue(){
-    return this.component.val();
+    if(this.component){
+      return this.component.val();
+    }else{
+      return this.initialValue;
+    }
+
   }
 }

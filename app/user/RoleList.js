@@ -1,8 +1,9 @@
 import { guid } from '../base/Utils';
 import Button from '../base/components/Button';
-import ToggleButton from '../base/components/ToggleButton';
 import TextBox from '../base/components/TextBox';
 import DataGrid from '../base/components/DataGrid';
+import Label from '../base/components/Label';
+import SearchHeader from '../main/components/SearchHeader';
 import AddRoleWindow from '../user/AddRoleWindow';
 import EditRoleWindow from '../user/EditRoleWindow';
 
@@ -107,6 +108,12 @@ export default class RoleList {
       }
     });
 
+    var pageTitleLabel = new Label({
+      text: 'Role'
+    });
+
+    var searchHeader = new SearchHeader({});
+
     var table = $('<table style="height: 100%; width: 100%; "></table>');
     var tr = $('<tr></tr>');
     var td = $('<td style="padding: 0; height: 40px;"></td>');
@@ -114,23 +121,7 @@ export default class RoleList {
     tr.appendTo(table);
     td.appendTo(tr);
 
-    var innerTable = $('<table style="height: 100%; width: 100%;"></table>');
-    var innerTr = $('<tr></tr>');
-    var innerTd = $('<td style="padding-top: 6px; padding-left: 10px; padding-right: 8px; width: 50px; height: 100%;"></td>');
-    innerTable.appendTo(td);
-    innerTr.appendTo(innerTable);
-    innerTd.appendTo(innerTr);
-    addRoleButton.render(innerTd);
-
-    innerTd = $('<td style="padding-top: 6px; width: 200px; height: 100%;"></td>');
-    innerTd.appendTo(innerTr);
-    searchTextBox.render(innerTd);
-
-    innerTd = $('<td style="padding-top: 6px; height: 100%; "></td>');
-    var _tempContainer = $('<div style="margin-left: -5px;"></div>')
-    _tempContainer.appendTo(innerTd);
-    innerTd.appendTo(innerTr);
-    searchButton.render(_tempContainer);
+    searchHeader.render(td);
 
     tr = $('<tr></tr>');
     td = $('<td style="padding: 0;"></td>');

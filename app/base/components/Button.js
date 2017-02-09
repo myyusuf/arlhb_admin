@@ -1,5 +1,3 @@
-import { guid } from '../Utils';
-
 import Component from "./Component";
 
 export default class Button extends Component{

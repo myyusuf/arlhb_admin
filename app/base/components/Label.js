@@ -1,11 +1,10 @@
-import {
-  guid
-} from '../Utils';
+import Component from "./Component";
 
-export default class Label {
+export default class Label extends Component{
 
   constructor(options) {
-    this.id = guid();
+    super(options);
+
     this.text = options.text;
     this.bold = options.bold;
   }

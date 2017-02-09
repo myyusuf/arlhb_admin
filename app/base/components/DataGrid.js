@@ -29,8 +29,8 @@ export default class DataGrid extends Component{
     this.jqxOptions['source'] = dataAdapter;
     this.jqxOptions['altrows'] = true;
     this.jqxOptions['columnsresize'] = true;
-    this.jqxOptions['pagesizeoptions'] = ['20', '50', '100'];
-    this.jqxOptions['pagesize'] = '20';
+    this.jqxOptions['pagesizeoptions'] = ['10', '20', '50'];
+    this.jqxOptions['pagesize'] = '10';
   }
 
   render(container) {

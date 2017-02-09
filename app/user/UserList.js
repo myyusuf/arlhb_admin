@@ -12,12 +12,12 @@ export default class UserList extends Component{
     var source = {
         datatype: "json",
         datafields: [
-          { name: 'roleId', type: 'int' },
-          { name: 'roleName', type: 'string' },
+          { name: 'employeeId', type: 'string' },
+          { name: 'firstName', type: 'string' },
           { name: 'description', type: 'string' },
         ],
-        id: "roleId",
-        url: "/roles"
+        id: "employeeId",
+        url: "/users"
     };
 
     var onSearch = function(data) {
@@ -34,7 +34,7 @@ export default class UserList extends Component{
     var jqxOptions = {
         width: '100%',
         height: '100%',
-        rowsheight: 40,
+        rowsheight: 35,
         pageable: true,
         altrows: true,
         theme: 'metro',
@@ -43,8 +43,8 @@ export default class UserList extends Component{
                     return params.data;
                 },
         columns: [
-          { text: 'ID', datafield: 'id' },
-          { text: 'Name', datafield: 'name'},
+          { text: 'ID', datafield: 'employeeId' },
+          { text: 'Name', datafield: 'firstName'},
           { text: 'Status', datafield: 'status'},
           { text: 'Location', datafield: 'location'},
           { text: 'Role', datafield: 'role'},
@@ -59,7 +59,7 @@ export default class UserList extends Component{
                 table.appendTo(htmlElement);
                 tr.appendTo(table);
                 td.appendTo(tr);
-                var button1 = $("<div style='margin: 5px;'>" + "View" + "</div>");
+                var button1 = $("<div style='margin: 2.4px;'>" + "View" + "</div>");
                 button1.appendTo(td);
                 button1.jqxButton({ theme:'light', template: "default"});
                 button1.click(function (event) {
@@ -68,7 +68,7 @@ export default class UserList extends Component{
 
                 td = $('<td></td>');
                 td.appendTo(tr);
-                var button2 = $("<div style='margin: 5px;'>" + "Edit" + "</div>");
+                var button2 = $("<div style='margin: 2.4px;'>" + "Edit" + "</div>");
                 button2.appendTo(td);
                 button2.jqxButton({ theme:'light', template: "success"});
                 button2.click(function (event) {
@@ -77,7 +77,7 @@ export default class UserList extends Component{
 
                 td = $('<td style="width: 50%;"></td>');
                 td.appendTo(tr);
-                var button3 = $("<div style='margin: 5px;'>" + "Block / Unblock" + "</div>");
+                var button3 = $("<div style='margin: 2.4px;'>" + "Block / Unblock" + "</div>");
                 button3.appendTo(td);
                 button3.jqxButton({ theme:'light', template: "danger"});
                 button3.click(function (event) {

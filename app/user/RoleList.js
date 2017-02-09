@@ -1,23 +1,13 @@
-import { guid } from '../base/Utils';
-import Button from '../base/components/Button';
-import TextBox from '../base/components/TextBox';
+import Component from '../base/components/Component';
 import DataGrid from '../base/components/DataGrid';
-import Label from '../base/components/Label';
 import SearchHeader from '../main/components/SearchHeader';
-import AddRoleWindow from '../user/AddRoleWindow';
-import EditRoleWindow from '../user/EditRoleWindow';
 
-export default class RoleList {
+export default class RoleList extends Component{
 
-  constructor() {
-    this.id = guid();
-  }
-
-  render(container) {
+  constructor(options) {
+    super(options);
 
     var _this = this;
-
-    var url = "/roles";
 
     var source = {
         datatype: "json",
@@ -27,24 +17,19 @@ export default class RoleList {
           { name: 'description', type: 'string' },
         ],
         id: "roleId",
-        url: url
+        url: "/roles"
     };
 
     var onSearch = function(data) {
-          data['searchTxt'] = searchTextBox.getValue();
-          return data;
+      // data['searchTxt'] = searchTextBox.getValue();
+      return data;
     }
 
     var onEditButtonClick = function(value){
-      // console.log("Value : " + value.bounddata);
-      var editRoleWindow = new EditRoleWindow({
-        data: value.bounddata,
-        onSaveSuccess: function(){
-          _this.dataGrid.refresh();
-        }
-      });
-      editRoleWindow.render($('#dialogWindowContainer'));
-      editRoleWindow.open();
+      if(options.onEditButtonClick){
+        console.log('value.bounddata : ' + value.bounddata);
+        options.onEditButtonClick(value.bounddata);
+      }
     }
 
     var jqxOptions = {
@@ -77,7 +62,6 @@ export default class RoleList {
                 td.appendTo(tr);
                 var button = $("<div style='margin: 5px;'>" + "Edit" + "</div>");
                 button.appendTo(td);
-                // $(htmlElement).append(button);
                 button.jqxButton({ theme:'light', template: "success", width: 70 });
                 button.click(function (event) {
                     onEditButtonClick(row);
@@ -99,79 +83,11 @@ export default class RoleList {
     this.dataGrid = new DataGrid({
       source: source,
       onSearch: onSearch,
-      onRowDoubleClick: function(data){
-        var editRoleWindow = new EditRoleWindow({
-          data: data,
-          onSaveSuccess: function(){
-            _this.dataGrid.refresh();
-          }
-        });
-        editRoleWindow.render($('#dialogWindowContainer'));
-        editRoleWindow.open();
-      },
       jqxOptions: jqxOptions
     });
+  }
 
-    var searchTextBox = new TextBox({placeHolder: 'Role Name', width: 250, height: 24});
-
-    var jqxOptions = {
-      imgSrc:'/arlhb_assets/images/search.png',
-      width: 30,
-      height: 26
-    };
-    var searchButton = new Button({
-      jqxOptions: jqxOptions,
-      onClick: function(){
-        _this.dataGrid.refresh();
-      }
-    });
-
-    var addRoleButton = new Button({
-      title:'Add Role',
-      template: 'primary',
-      height: 26,
-      onClick: function(){
-        var addRoleWindow = new AddRoleWindow({
-          onSaveSuccess: function(){
-            _this.dataGrid.refresh();
-          }
-        });
-        addRoleWindow.render($('#dialogWindowContainer'));
-        addRoleWindow.open();
-      }
-    });
-
-    var pageTitleLabel = new Label({
-      text: 'Role'
-    });
-
-    var searchHeader = new SearchHeader({
-      onAddButtonClick: function(e){
-        var addRoleWindow = new AddRoleWindow({
-          onSaveSuccess: function(){
-            _this.dataGrid.refresh();
-          }
-        });
-        addRoleWindow.render($('#dialogWindowContainer'));
-        addRoleWindow.open();
-      }
-    });
-
-    var table = $('<table style="height: 100%; width: 100%; "></table>');
-    var tr = $('<tr></tr>');
-    var td = $('<td style="padding: 0; height: 40px;"></td>');
-    table.appendTo(container);
-    tr.appendTo(table);
-    td.appendTo(tr);
-
-    searchHeader.render(td);
-
-    tr = $('<tr></tr>');
-    td = $('<td style="padding: 0;"></td>');
-    tr.appendTo(table);
-    td.appendTo(tr);
-
-    this.dataGrid.render(td);
-
+  render(container) {
+    this.dataGrid.render(container);
   }
 }

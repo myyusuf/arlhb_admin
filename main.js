@@ -1,11 +1,11 @@
 import { getMenuData } from './app/base/ApplicationData';
 import MainMenu from "./app/main/components/MainMenu";
-import RoleList from "./app/user/RoleList";
+import RolePage from "./app/user/RolePage";
 
-var roleList = new RoleList();
+var rolePage = new RolePage({});
 var mainMenu = new MainMenu({
   onClick: function(e){
-    roleList.render($('#content'));
+    rolePage.render($('#content'));
   }
 });
 

@@ -20,7 +20,9 @@ export default class SearchHeader extends Component{
     this.searchButton = new Button({
       jqxOptions: jqxOptions,
       onClick: function(){
-
+        if(options.onSearchButtonClick){
+          options.onSearchButtonClick(e);
+        }
       }
     });
 
@@ -28,8 +30,10 @@ export default class SearchHeader extends Component{
       title:'Add Role',
       template: 'primary',
       height: 26,
-      onClick: function(){
-
+      onClick: function(e){
+        if(options.onAddButtonClick){
+          options.onAddButtonClick(e);
+        }
       }
     });
 

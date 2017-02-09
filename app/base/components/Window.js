@@ -31,7 +31,7 @@ export default class Window extends Component{
     var windowContent = $('<div></div>');
     windowContent.appendTo(windowContainer);
 
-    appendWindowContentChild(windowContent)
+    this.appendWindowContentChild(windowContent)
 
     windowContainer.jqxWindow(this.jqxOptions);
 

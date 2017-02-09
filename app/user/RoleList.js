@@ -112,7 +112,17 @@ export default class RoleList {
       text: 'Role'
     });
 
-    var searchHeader = new SearchHeader({});
+    var searchHeader = new SearchHeader({
+      onAddButtonClick: function(e){
+        var addRoleWindow = new AddRoleWindow({
+          onSaveSuccess: function(){
+            _this.dataGrid.refresh();
+          }
+        });
+        addRoleWindow.render($('#dialogWindowContainer'));
+        addRoleWindow.open();
+      }
+    });
 
     var table = $('<table style="height: 100%; width: 100%; "></table>');
     var tr = $('<tr></tr>');

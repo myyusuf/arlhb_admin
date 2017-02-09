@@ -35,19 +35,22 @@ export default class RoleList {
           return data;
     }
 
-    var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
-              var roleTypeDescription = "";
-
-              if(value == 1){
-                roleTypeDescription = "Role Type";
-              }
-
-              return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + ';">' + roleTypeDescription + '</span>';
-            }
+    var onEditButtonClick = function(value){
+      // console.log("Value : " + value.bounddata);
+      var editRoleWindow = new EditRoleWindow({
+        data: value.bounddata,
+        onSaveSuccess: function(){
+          _this.dataGrid.refresh();
+        }
+      });
+      editRoleWindow.render($('#dialogWindowContainer'));
+      editRoleWindow.open();
+    }
 
     var jqxOptions = {
         width: '100%',
         height: '100%',
+        rowsheight: 40,
         pageable: true,
         altrows: true,
         theme: 'metro',
@@ -56,9 +59,39 @@ export default class RoleList {
                     return params.data;
                 },
         columns: [
-          { text: 'Role Id', datafield: 'roleId', width: '30%' },
           { text: 'Role Name', datafield: 'roleName', width: '30%' },
-          { text: 'Description', datafield: 'description', width: '40%' }
+          { text: 'Description', datafield: 'description', width: '40%' },
+          {
+            text: 'Actions',
+            datafield: 'actions',
+            width: '30%',
+            createwidget: function (row, column, value, htmlElement) {
+                var table = $('<table style="height: 100%; width: 100%; text-align: center;"></table>');
+                var tr = $('<tr></tr>');
+                var td = $('<td style="width: 50%;"></td>');
+                table.appendTo(htmlElement);
+                tr.appendTo(table);
+                td.appendTo(tr);
+
+                td = $('<td></td>');
+                td.appendTo(tr);
+                var button = $("<div style='margin: 5px;'>" + "Edit" + "</div>");
+                button.appendTo(td);
+                // $(htmlElement).append(button);
+                button.jqxButton({ theme:'light', template: "success", width: 70 });
+                button.click(function (event) {
+                    onEditButtonClick(row);
+                });
+
+                td = $('<td style="width: 50%;"></td>');
+                td.appendTo(tr);
+            },
+            initwidget: function (row, column, value, htmlElement) {
+                // var imgurl = '../../images/' + value.toLowerCase() + '.png';
+                // $(htmlElement).find('.buttonValue')[0].innerHTML = value;
+                // $(htmlElement).find('img')[0].src = imgurl;
+            }
+          }
         ],
         groups: []
     }

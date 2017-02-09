@@ -7,14 +7,7 @@ export default class AuthoritiesTree extends Component{
     super(options);
     var _this = this;
 
-    this.data = [
-      { label: "Item 1", expanded: true, items: [
-            { label: "Item 1.1" },
-            { label: "Item 1.2", selected: true }
-        ]
-      },
-      { label: "Item 2"}
-    ];
+    this.data = [];
 
     this.checkBoxTree = new CheckBoxTree({
       data: this.data,
@@ -68,6 +61,10 @@ export default class AuthoritiesTree extends Component{
         map[parent].items.push(obj);
     }
     return map['-'].items;
+  }
+
+  getValue(){
+    return this.checkBoxTree.getValue();
   }
 
 }

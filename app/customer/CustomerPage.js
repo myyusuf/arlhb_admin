@@ -1,11 +1,11 @@
 import Component from '../base/components/Component';
 import Button from '../base/components/Button';
 import SearchText from '../main/components/SearchText';
-import ActiveSessionList from './ActiveSessionList';
-import AddRoleWindow from './AddRoleWindow';
-import EditRoleWindow from './EditRoleWindow';
+import CustomerList from './CustomerList';
+import AddRoleWindow from '../user/AddRoleWindow';
+import EditRoleWindow from '../user/EditRoleWindow';
 
-export default class ActiveSessionPage extends Component{
+export default class CustomerPage extends Component{
 
   constructor(options) {
     super(options);
@@ -15,7 +15,7 @@ export default class ActiveSessionPage extends Component{
     if(options.title){
       this.title = option.title;
     }else{
-      this.title = "Active Sessions";
+      this.title = "Customer Management";
     }
 
     var onEditButtonClick = function(value){
@@ -29,7 +29,7 @@ export default class ActiveSessionPage extends Component{
       editRoleWindow.open();
     }
 
-    this.activeSessionList = new ActiveSessionList({
+    this.customerList = new CustomerList({
       onEditButtonClick: onEditButtonClick
     });
 
@@ -52,7 +52,7 @@ export default class ActiveSessionPage extends Component{
     });
 
     this.searchText = new SearchText({
-      placeHolder: 'User Id',
+      placeHolder: 'Customer Name',
       onSearch: function(value){
         _this.roleList.filter(value);
       }
@@ -88,6 +88,6 @@ export default class ActiveSessionPage extends Component{
     tr.appendTo(table);
     td.appendTo(tr);
 
-    this.activeSessionList.render(td);
+    this.customerList.render(td);
   }
 }

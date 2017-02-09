@@ -15,6 +15,8 @@ export default class UserList extends Component{
           { name: 'employeeId', type: 'string' },
           { name: 'firstName', type: 'string' },
           { name: 'description', type: 'string' },
+          { name: 'role'},
+          { name: 'roleName', type: 'string', map: 'role>roleName' },
         ],
         id: "employeeId",
         url: "/users"
@@ -47,7 +49,7 @@ export default class UserList extends Component{
           { text: 'Name', datafield: 'firstName'},
           { text: 'Status', datafield: 'status'},
           { text: 'Location', datafield: 'location'},
-          { text: 'Role', datafield: 'role'},
+          { text: 'Role', datafield: 'roleName'},
           {
             text: 'Actions',
             datafield: 'actions',

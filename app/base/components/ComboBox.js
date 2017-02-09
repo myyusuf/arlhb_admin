@@ -1,11 +1,9 @@
-import {
-  guid
-} from '../Utils';
+import Component from "./Component";
 
-export default class ComboBox {
+export default class ComboBox extends Component {
 
   constructor(options) {
-    this.id = guid();
+    super(options);
     this.localData = options.localData;
     this.url = options.url;
     this.dataFields = options.dataFields;

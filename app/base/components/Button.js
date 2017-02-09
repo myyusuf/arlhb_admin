@@ -5,8 +5,7 @@ export default class Button {
   constructor(options) {
     this.id = guid();
     this.onClick = options.onClick;
-    this.jqxOptions = options.jqxOptions;
-
+    
     if(options.title){
       this.title = options.title;
     }else{
@@ -23,7 +22,7 @@ export default class Button {
     buttonContainer.attr('value', this.title);
     buttonContainer.appendTo(container);
 
-    buttonContainer.jqxButton(buttonOptions);
+    buttonContainer.jqxButton(this.jqxOptions);
 
     if(this.onClick){
       $('#' + this.id).on('click', function () {

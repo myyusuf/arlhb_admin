@@ -2,19 +2,19 @@ import {
   guid
 } from '../Utils';
 
-export default class DataGrid {
+import Component from "./Component";
+
+export default class DataGrid extends Component{
 
   constructor(options) {
-    this.id = guid();
+    super(options);
+
+    var _this = this;
+
     this.source = options.source;
     this.onSearch = options.onSearch;
     this.dataGridOptions = options.dataGridOptions;
     this.onRowDoubleClick = options.onRowDoubleClick;
-
-  }
-
-  render(container) {
-    var _this = this;
 
     var dataAdapter = new $.jqx.dataAdapter(this.source, {
       formatData: function(data) {
@@ -34,8 +34,12 @@ export default class DataGrid {
     this.dataGridOptions['source'] = dataAdapter;
     this.dataGridOptions['altrows'] = true;
     this.dataGridOptions['columnsresize'] = true;
-    this.dataGridOptions['pagesizeoptions'] = ['50', '100', '500'];
-    this.dataGridOptions['pagesize'] = '50';
+    this.dataGridOptions['pagesizeoptions'] = ['20', '50', '100'];
+    this.dataGridOptions['pagesize'] = '20';
+  }
+
+  render(container) {
+    var _this = this;
 
     var dataGridContainer = $('<div style="height: 100%"></div>');
     dataGridContainer.appendTo(container);

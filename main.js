@@ -3,6 +3,10 @@ import MainMenu from "./app/main/components/MainMenu";
 import RoleList from "./app/user/RoleList";
 
 var roleList = new RoleList();
-var mainMenu = new MainMenu({});
+var mainMenu = new MainMenu({
+  onClick: function(e){
+    roleList.render($('#content'));
+  }
+});
 
 mainMenu.render($('#top-menu'));

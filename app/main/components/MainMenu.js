@@ -1,10 +1,11 @@
 import { guid } from '../../base/Utils';
 import Menu from "../../base/components/Menu";
+import Component from "../../base/components/Component";
 
-export default class MainMenu {
+export default class MainMenu extends Component{
 
-  constructor() {
-    this.id = guid();
+  constructor(options) {
+    super(options);
 
     var menuData = [
       {
@@ -89,7 +90,13 @@ export default class MainMenu {
     this.menu = new Menu({
       data: menuData,
       onClick: function(e){
-
+        if(options.onClick){
+          options.onClick(e);
+        }
+      },
+      jqxOptions:{
+        width: '100%',
+        height: '100%'
       }
     });
   }

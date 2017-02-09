@@ -6,9 +6,15 @@ export default class Component {
     this.id = guid();
     this.theme = 'metro';
 
+    if(options.jqxOptions){
+      this.jqxOptions = options.jqxOptions;
+    }else{
+      this.jqxOptions = {};
+    }
+
+    this.jqxOptions['theme'] = this.theme;
+
   }
 
-  render(container) {
-
-  }
+  render(container) {}
 }

@@ -29,6 +29,7 @@ export default class Menu extends Component{
     dataAdapter.dataBind();
 
     this.records = dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label'}]);
+    this.jqxOptions['source'] = this.records;
 
   }
 
@@ -38,12 +39,8 @@ export default class Menu extends Component{
 
     var menuContainer = $('<div></div>');
     menuContainer.appendTo(container);
-    menuContainer.jqxMenu({
-      theme: this.theme,
-      source: this.records,
-      width: '100%',
-      height: '100%'
-    });
+
+    menuContainer.jqxMenu(this.jqxOptions);
 
     menuContainer.on('itemclick',function (event)
     {

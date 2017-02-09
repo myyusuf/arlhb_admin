@@ -2,7 +2,7 @@ import Button from './Button';
 import ModalWindow from './ModalWindow';
 import Label from './Label';
 
-export default class AddWindow extends ModalWindow{
+export default class DialogWindow extends ModalWindow{
 
   constructor(options) {
     super(options);

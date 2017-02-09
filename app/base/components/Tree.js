@@ -1,12 +1,10 @@
-import {
-  guid
-} from '../Utils';
+import Component from "./Component";
 
-export default class Tree {
+export default class Tree extends Component{
 
   constructor(options) {
-    this.id = guid();
-    this.source = options.data;
+    super(options);
+    this.data = options.data;
     this.onClick = options.onClick;
   }
 
@@ -16,13 +14,9 @@ export default class Tree {
 
     var treeContainer = $('<div></div>');
     treeContainer.appendTo(container);
-    treeContainer.jqxTree({
-      theme: 'metro',
-      // source: this.records,
-      source: this.source,
-      width: '100%',
-      height: '100%'
-    });
+
+    this.jqxOptions['source'] = this.data
+    treeContainer.jqxTree(this.jqxOptions);
 
     treeContainer.on('itemClick',function (event)
     {
@@ -32,5 +26,7 @@ export default class Tree {
           _this.onClick(item);
         }
     });
+
+    this.treeContainer = treeContainer;
   }
 }

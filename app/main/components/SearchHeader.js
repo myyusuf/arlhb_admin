@@ -28,12 +28,15 @@ export default class SearchHeader extends Component{
 
     this.addRoleButton = new Button({
       title:'Add Role',
-      template: 'primary',
       height: 26,
       onClick: function(e){
         if(options.onAddButtonClick){
           options.onAddButtonClick(e);
         }
+      },
+      jqxOptions:{
+        theme: 'light',
+        template: 'primary',
       }
     });
 

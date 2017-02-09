@@ -9,8 +9,8 @@ export default class CheckBoxTree extends Tree{
     this.jqxOptions['checkboxes'] = true;
   }
 
-  getCheckedItems(){
-    this.treeContainer.jqxTree('getCheckedItems');
+  getValue(){
+    return this.treeContainer.jqxTree('getCheckedItems');
   }
 
 }

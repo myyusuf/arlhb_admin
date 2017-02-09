@@ -19,5 +19,9 @@ export default class Component {
 
   }
 
+  getId(){
+    return this.id;
+  }
+
   render(container) {}
 }

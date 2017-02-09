@@ -15,11 +15,14 @@ export default class AddWindow extends ModalWindow{
 
     this.saveButton = new Button({
       title: 'Save',
-      template: 'success',
       onClick: function(){
         if(options.onSave){
           options.onSave();
         }
+      },
+      jqxOptions:{
+        theme: 'light',
+        template: 'success',
       }
     });
 
@@ -29,6 +32,10 @@ export default class AddWindow extends ModalWindow{
         if(options.onCancel){
           options.onCancel();
         }
+      },
+      jqxOptions:{
+        theme: 'light',
+        template: 'default',
       }
     });
 

@@ -10,7 +10,7 @@ export default class TextBox extends Component{
     }else{
       this.title = 'Button';
     }
-    
+
     this.initialValue = options.value;
   }
 
@@ -26,10 +26,6 @@ export default class TextBox extends Component{
     }
 
     this.component = textBoxContainer;
-  }
-
-  getId(){
-    return this.id;
   }
 
   getValue(){

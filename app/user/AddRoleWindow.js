@@ -2,9 +2,7 @@ import Button from '../base/components/Button';
 import Form from '../base/components/Form';
 import AddWindow from '../base/components/AddWindow';
 import Component from '../base/components/Component';
-import TextBox from '../base/components/TextBox';
-import TextArea from '../base/components/TextArea';
-import Label from '../base/components/Label';
+import RoleForm from './RoleForm';
 
 export default class AddRoleWindow extends Component{
 
@@ -12,70 +10,18 @@ export default class AddRoleWindow extends Component{
     super(options);
     var _this = this;
 
-    var role = options.data;
-    this.onSaveSuccess = options.onSaveSuccess;
-
-    var roleIdTextBox = new TextBox({height: 25, width: '90%'});
-    var roleNameTextBox = new TextBox({height: 25, width: '90%'});
-
-    var formItems = [
-      {
-        name: 'roleId',
-        label: 'Role ID',
-        content: roleIdTextBox,
-        validation:{
-          type: 'TEXTBOX',
-          rule: 'required'
-        }
-      },
-      {
-        name: 'roleName',
-        label: 'Role Name',
-        content: roleNameTextBox,
-        validation:{
-          type: 'TEXTBOX',
-          rule: 'required'
-        }
-      }
-    ];
-    var formOptions = {
-      items: formItems,
-      labelColumnWidth: '120px',
-      onValidationSuccess: function(formValue){
-        $.ajax({
-              method: "POST",
-              url: "/roles",
-              data: JSON.stringify(formValue),
-              beforeSend: function(xhr){
-                xhr.setRequestHeader('Accept', 'application/json');
-                xhr.setRequestHeader('Content-Type', 'application/json');
-              }
-            }).done(function() {
-                $("#successNotification").jqxNotification("open");
-                _this.window.close();
-                if(_this.onSaveSuccess){
-                  _this.onSaveSuccess();
-                }
-            }).fail(function( jqXHR, textStatus, errorThrown) {
-                var errorMessage = 'Proses gagal. Status : ' + jqXHR.status + ' [' + jqXHR.statusText + '] : ' + jqXHR.responseText;
-                $("#errorNotification").html('<div>' + errorMessage + '</div>');
-                $("#errorNotification").jqxNotification("open");
-            });
-      }
-    }
-
-    var form = new Form(formOptions);
+    var roleForm = new RoleForm({onSaveSuccess: options.onSaveSuccess});
 
     var jqxOptions = {
-      width: 340,
-      height: 180,
+      width: 430,
+      height: 430,
     };
 
     this.window = new AddWindow({
       title: 'Add Role',
-      content: form,
+      content: roleForm,
       onSave: function(){
-        form.validate();
+        roleForm.validate();
       },
       onCancel: function(){
         _this.window.close();

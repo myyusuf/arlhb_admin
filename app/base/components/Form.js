@@ -1,11 +1,9 @@
-import {
-  guid
-} from '../Utils';
+import Component from "./Component";
 
-export default class Form {
+export default class Form extends Component{
 
   constructor(options) {
-    this.id = guid();
+    super(options);
     this.items = options.items;
     this.onValidationSuccess = options.onValidationSuccess;
     this.labelColumnWidth = options.labelColumnWidth;

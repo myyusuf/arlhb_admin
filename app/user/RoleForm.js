@@ -5,7 +5,7 @@ import Component from '../base/components/Component';
 import TextBox from '../base/components/TextBox';
 import TextArea from '../base/components/TextArea';
 import Label from '../base/components/Label';
-import CheckBoxTree from '../base/components/CheckBoxTree';
+import AuthoritiesTree from '../main/components/AuthoritiesTree';
 
 export default class RoleForm extends Component{
 
@@ -36,13 +36,7 @@ export default class RoleForm extends Component{
         ]
       }
     ];
-    var checkBoxTree = new CheckBoxTree({
-      data: data,
-      jqxOptions:{
-        height: 200,
-        width: 275
-      }
-    });
+    var checkBoxTree = new AuthoritiesTree({});
 
     var formItems = [
       {

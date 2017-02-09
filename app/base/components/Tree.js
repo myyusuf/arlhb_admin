@@ -29,4 +29,12 @@ export default class Tree extends Component{
 
     this.treeContainer = treeContainer;
   }
+
+  refresh(){
+    this.treeContainer.jqxTree('refresh');
+  }
+
+  refreshData(data){
+    this.treeContainer.jqxTree({source: data});
+  }
 }

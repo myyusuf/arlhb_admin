@@ -1,11 +1,13 @@
 import { guid } from '../Utils';
 
-export default class Button {
+import Component from "./Component";
+
+export default class Button extends Component{
 
   constructor(options) {
-    this.id = guid();
+    super(options);
     this.onClick = options.onClick;
-    
+
     if(options.title){
       this.title = options.title;
     }else{

@@ -44,7 +44,7 @@ export default class RoleList {
               return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + ';">' + roleTypeDescription + '</span>';
             }
 
-    var dataGridOptions = {
+    var jqxOptions = {
         width: '100%',
         height: '100%',
         pageable: true,
@@ -75,15 +75,18 @@ export default class RoleList {
         editRoleWindow.render($('#dialogWindowContainer'));
         editRoleWindow.open();
       },
-      dataGridOptions: dataGridOptions
+      jqxOptions: jqxOptions
     });
 
     var searchTextBox = new TextBox({placeHolder: 'Role Name', width: 250, height: 24});
-    var searchButton = new Button({
+
+    var jqxOptions = {
       imgSrc:'/arlhb_assets/images/search.png',
-      theme: 'metro',
       width: 30,
-      height: 26,
+      height: 26
+    };
+    var searchButton = new Button({
+      jqxOptions: jqxOptions,
       onClick: function(){
         _this.dataGrid.refresh();
       }
@@ -104,7 +107,7 @@ export default class RoleList {
       }
     });
 
-    var table = $('<table style="height: 100%; width: 100%; margin: -3px; "></table>');
+    var table = $('<table style="height: 100%; width: 100%; "></table>');
     var tr = $('<tr></tr>');
     var td = $('<td style="padding: 0; height: 40px;"></td>');
     table.appendTo(container);

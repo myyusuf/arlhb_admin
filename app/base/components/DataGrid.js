@@ -13,7 +13,6 @@ export default class DataGrid extends Component{
 
     this.source = options.source;
     this.onSearch = options.onSearch;
-    this.dataGridOptions = options.dataGridOptions;
     this.onRowDoubleClick = options.onRowDoubleClick;
 
     var dataAdapter = new $.jqx.dataAdapter(this.source, {
@@ -31,19 +30,19 @@ export default class DataGrid extends Component{
       },
 
     });
-    this.dataGridOptions['source'] = dataAdapter;
-    this.dataGridOptions['altrows'] = true;
-    this.dataGridOptions['columnsresize'] = true;
-    this.dataGridOptions['pagesizeoptions'] = ['20', '50', '100'];
-    this.dataGridOptions['pagesize'] = '20';
+    this.jqxOptions['source'] = dataAdapter;
+    this.jqxOptions['altrows'] = true;
+    this.jqxOptions['columnsresize'] = true;
+    this.jqxOptions['pagesizeoptions'] = ['20', '50', '100'];
+    this.jqxOptions['pagesize'] = '20';
   }
 
   render(container) {
     var _this = this;
 
-    var dataGridContainer = $('<div style="height: 100%"></div>');
+    var dataGridContainer = $('<div style="width: 100%; height: 100%"></div>');
     dataGridContainer.appendTo(container);
-    dataGridContainer.jqxGrid(this.dataGridOptions);
+    dataGridContainer.jqxGrid(this.jqxOptions);
 
     if(this.onRowDoubleClick){
       dataGridContainer.on('rowdoubleclick', function (event){

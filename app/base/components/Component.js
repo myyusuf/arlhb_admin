@@ -4,7 +4,8 @@ export default class Component {
 
   constructor(options) {
     this.id = guid();
-    this.theme = 'metro';
+
+    var defaultTheme = 'metro';
 
     if(options.jqxOptions){
       this.jqxOptions = options.jqxOptions;
@@ -12,7 +13,9 @@ export default class Component {
       this.jqxOptions = {};
     }
 
-    this.jqxOptions['theme'] = this.theme;
+    if(this.jqxOptions.theme == undefined){
+        this.jqxOptions['theme'] = defaultTheme;
+    }
 
   }
 

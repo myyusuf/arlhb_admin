@@ -63,7 +63,7 @@ export default class UserBlockWindow extends Component{
     var form = new SingleRowForm(formOptions);
 
     var jqxOptions = {
-      width: 303,
+      width: 299,
       height: 214,
     };
 

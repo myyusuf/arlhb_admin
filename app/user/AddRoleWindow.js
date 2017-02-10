@@ -2,6 +2,7 @@ import Button from '../base/components/Button';
 import Form from '../base/components/Form';
 import AddWindow from '../base/components/AddWindow';
 import Component from '../base/components/Component';
+import RestService from '../base/service/RestService';
 import RoleForm from './RoleForm';
 
 export default class AddRoleWindow extends Component{
@@ -14,25 +15,10 @@ export default class AddRoleWindow extends Component{
 
     var roleForm = new RoleForm({
       onValidationSuccess: function(formValue){
-        $.ajax({
-              method: "POST",
-              url: "/roles",
-              data: JSON.stringify(formValue),
-              beforeSend: function(xhr){
-                xhr.setRequestHeader('Accept', 'application/json');
-                xhr.setRequestHeader('Content-Type', 'application/json');
-              }
-            }).done(function() {
-                $("#successNotification").jqxNotification("open");
-                // _this.window.close();
-                if(_this.onSaveSuccess){
-                  _this.onSaveSuccess();
-                }
-            }).fail(function( jqXHR, textStatus, errorThrown) {
-                var errorMessage = 'Proses gagal. Status : ' + jqXHR.status + ' [' + jqXHR.statusText + '] : ' + jqXHR.responseText;
-                $("#errorNotification").html('<div>' + errorMessage + '</div>');
-                $("#errorNotification").jqxNotification("open");
-            });
+        RestService.post({
+          url: '/roles',
+          data: formValue
+        });
       }
     });
 

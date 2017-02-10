@@ -2,8 +2,7 @@ import Component from '../base/components/Component';
 import Button from '../base/components/Button';
 import SearchText from '../main/components/SearchText';
 import UserList from './UserList';
-import AddRoleWindow from './AddRoleWindow';
-import EditRoleWindow from './EditRoleWindow';
+import EditUserWindow from './EditUserWindow';
 
 export default class UserPage extends Component{
 
@@ -19,36 +18,18 @@ export default class UserPage extends Component{
     }
 
     var onEditButtonClick = function(value){
-      var editRoleWindow = new EditRoleWindow({
+      var editUserWindow = new EditUserWindow({
         data: value,
         onSaveSuccess: function(){
           _this.dataGrid.refresh();
         }
       });
-      editRoleWindow.render($('#dialogWindowContainer'));
-      editRoleWindow.open();
+      editUserWindow.render($('#dialogWindowContainer'));
+      editUserWindow.open();
     }
 
     this.userList = new UserList({
       onEditButtonClick: onEditButtonClick
-    });
-
-    this.addRoleButton = new Button({
-      title:'Add Role',
-      height: 26,
-      onClick: function(e){
-        var addRoleWindow = new AddRoleWindow({
-          onSaveSuccess: function(){
-            _this.dataGrid.refresh();
-          }
-        });
-        addRoleWindow.render($('#dialogWindowContainer'));
-        addRoleWindow.open();
-      },
-      jqxOptions:{
-        theme: 'light',
-        template: 'primary',
-      }
     });
 
     this.searchText = new SearchText({
@@ -77,10 +58,6 @@ export default class UserPage extends Component{
     td = $('<td style="padding-left: 7px; height: 20px; width: 30px;"></td>');
     tr.appendTo(table);
     td.appendTo(tr);
-    // this.addRoleButton.render(td);
-    //
-    // td = $('<td style=""></td>');
-    // td.appendTo(tr);
     this.searchText.render(td);
 
     tr = $('<tr></tr>');

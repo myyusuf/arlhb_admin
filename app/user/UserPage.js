@@ -2,6 +2,7 @@ import Component from '../base/components/Component';
 import Button from '../base/components/Button';
 import SearchText from '../main/components/SearchText';
 import UserList from './UserList';
+import ViewUserWindow from './ViewUserWindow';
 import EditUserWindow from './EditUserWindow';
 import UserBlockWindow from './UserBlockWindow';
 
@@ -16,6 +17,17 @@ export default class UserPage extends Component{
       this.title = option.title;
     }else{
       this.title = "User Management";
+    }
+
+    var onViewButtonClick = function(value){
+      var viewUserWindow = new ViewUserWindow({
+        data: value,
+        onSaveSuccess: function(){
+          _this.dataGrid.refresh();
+        }
+      });
+      viewUserWindow.render($('#dialogWindowContainer'));
+      viewUserWindow.open();
     }
 
     var onEditButtonClick = function(value){
@@ -41,6 +53,7 @@ export default class UserPage extends Component{
     }
 
     this.userList = new UserList({
+      onViewButtonClick: onViewButtonClick,
       onEditButtonClick: onEditButtonClick,
       onBlockButtonClick: onBlockButtonClick
     });

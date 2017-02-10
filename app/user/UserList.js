@@ -27,6 +27,12 @@ export default class UserList extends Component{
       return data;
     }
 
+    var onViewButtonClick = function(value){
+      if(options.onViewButtonClick){
+        options.onViewButtonClick(value.bounddata);
+      }
+    }
+
     var onEditButtonClick = function(value){
       if(options.onEditButtonClick){
         options.onEditButtonClick(value.bounddata);
@@ -71,7 +77,7 @@ export default class UserList extends Component{
                 button1.appendTo(td);
                 button1.jqxButton({ theme:'light', template: "default"});
                 button1.click(function (event) {
-                    onEditButtonClick(row);
+                    onViewButtonClick(row);
                 });
 
                 td = $('<td></td>');

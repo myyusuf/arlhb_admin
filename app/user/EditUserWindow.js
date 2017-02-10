@@ -24,7 +24,7 @@ export default class EditUserWindow extends Component{
       title: 'Edit User',
       content: userForm,
       onSave: function(){
-        roleForm.validate();
+        userForm.validate();
       },
       onCancel: function(){
         _this.window.close();

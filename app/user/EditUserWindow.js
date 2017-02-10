@@ -16,8 +16,8 @@ export default class EditUserWindow extends Component{
     });
 
     var jqxOptions = {
-      width: 430,
-      height: 430,
+      width: 380,
+      height: 330,
     };
 
     this.window = new AddWindow({

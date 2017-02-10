@@ -10,13 +10,7 @@ export default class Form extends Component{
     this.contentColumnWidth = options.contentColumnWidth;
   }
 
-  render(container) {
-
-    var _this = this;
-
-    this.formItems = [];
-
-    var validationRules = [];
+  renderItems(container){
     var form = $('<form></form>');
     form.appendTo(container);
     var table = $('<table style="width: 100%;"></table>');
@@ -45,6 +39,22 @@ export default class Form extends Component{
       }
 
       this.items[i].content.render(td);
+    }
+
+    this.form = form;
+
+  }
+
+  render(container) {
+
+    var _this = this;
+
+    this.renderItems(container);
+
+    this.formItems = [];
+    var validationRules = [];
+
+    for(var i=0; i<this.items.length; i++){
       this.formItems.push({
         name: this.items[i].name,
         content: this.items[i].content
@@ -65,7 +75,7 @@ export default class Form extends Component{
               validationRules.push(
                 {
                   input: '#' + contentId,
-                  message: 'Wajib diisi',
+                  message: 'Required',
                   action: 'select', rule: function(input){
                     var value = closureContent.getValue();
                     if(value == null || value == ''){
@@ -91,11 +101,11 @@ export default class Form extends Component{
       }
     }
 
-    form.jqxValidator({
+    this.form.jqxValidator({
       rules: validationRules
     });
 
-    form.on('validationSuccess', function () {
+    this.form.on('validationSuccess', function () {
       if(_this.onValidationSuccess){
         var formValues = {};
         for(var i=0; i<_this.formItems.length; i++){
@@ -104,8 +114,6 @@ export default class Form extends Component{
         _this.onValidationSuccess(formValues);
       }
     });
-
-    this.form = form;
   }
 
   validate(){

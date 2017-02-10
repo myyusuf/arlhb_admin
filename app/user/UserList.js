@@ -33,6 +33,12 @@ export default class UserList extends Component{
       }
     }
 
+    var onBlockButtonClick = function(value){
+      if(options.onBlockButtonClick){
+        options.onBlockButtonClick(value.bounddata);
+      }
+    }
+
     var jqxOptions = {
         width: '100%',
         height: '100%',
@@ -83,7 +89,7 @@ export default class UserList extends Component{
                 button3.appendTo(td);
                 button3.jqxButton({ theme:'light', template: "danger"});
                 button3.click(function (event) {
-                    onEditButtonClick(row);
+                    onBlockButtonClick(row);
                 });
             },
             initwidget: function (row, column, value, htmlElement) {

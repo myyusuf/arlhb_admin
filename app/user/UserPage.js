@@ -3,6 +3,7 @@ import Button from '../base/components/Button';
 import SearchText from '../main/components/SearchText';
 import UserList from './UserList';
 import EditUserWindow from './EditUserWindow';
+import UserBlockWindow from './UserBlockWindow';
 
 export default class UserPage extends Component{
 
@@ -28,8 +29,20 @@ export default class UserPage extends Component{
       editUserWindow.open();
     }
 
+    var onBlockButtonClick = function(value){
+      var userBlockWindow = new UserBlockWindow({
+        data: value,
+        onSaveSuccess: function(){
+          _this.dataGrid.refresh();
+        }
+      });
+      userBlockWindow.render($('#dialogWindowContainer'));
+      userBlockWindow.open();
+    }
+
     this.userList = new UserList({
-      onEditButtonClick: onEditButtonClick
+      onEditButtonClick: onEditButtonClick,
+      onBlockButtonClick: onBlockButtonClick
     });
 
     this.searchText = new SearchText({

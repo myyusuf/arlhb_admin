@@ -22,7 +22,7 @@ export default class RolePage extends Component{
       var editRoleWindow = new EditRoleWindow({
         data: value,
         onSaveSuccess: function(){
-          _this.dataGrid.refresh();
+          _this.roleList.refresh();
         }
       });
       editRoleWindow.render($('#dialogWindowContainer'));
@@ -39,7 +39,7 @@ export default class RolePage extends Component{
       onClick: function(e){
         var addRoleWindow = new AddRoleWindow({
           onSaveSuccess: function(){
-            _this.dataGrid.refresh();
+            _this.roleList.refresh();
           }
         });
         addRoleWindow.render($('#dialogWindowContainer'));

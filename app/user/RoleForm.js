@@ -18,7 +18,7 @@ export default class RoleForm extends Component{
     if(options.data){
       role = options.data;
     }
-    this.onSaveSuccess = options.onSaveSuccess;
+    this.onValidationSuccess = options.onValidationSuccess;
 
     var roleNameTextBox = new TextBox({
       value: role.roleName,
@@ -73,27 +73,10 @@ export default class RoleForm extends Component{
       items: formItems,
       labelColumnWidth: '120px',
       onValidationSuccess: function(formValue){
-
         console.log(formValue);
-        // $.ajax({
-        //       method: "POST",
-        //       url: "/roles",
-        //       data: JSON.stringify(formValue),
-        //       beforeSend: function(xhr){
-        //         xhr.setRequestHeader('Accept', 'application/json');
-        //         xhr.setRequestHeader('Content-Type', 'application/json');
-        //       }
-        //     }).done(function() {
-        //         $("#successNotification").jqxNotification("open");
-        //         _this.window.close();
-        //         if(_this.onSaveSuccess){
-        //           _this.onSaveSuccess();
-        //         }
-        //     }).fail(function( jqXHR, textStatus, errorThrown) {
-        //         var errorMessage = 'Proses gagal. Status : ' + jqXHR.status + ' [' + jqXHR.statusText + '] : ' + jqXHR.responseText;
-        //         $("#errorNotification").html('<div>' + errorMessage + '</div>');
-        //         $("#errorNotification").jqxNotification("open");
-        //     });
+        if(_this.onValidationSuccess){
+          _this.onValidationSuccess(formValue);
+        }
       }
     }
 

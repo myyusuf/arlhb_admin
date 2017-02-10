@@ -90,6 +90,10 @@ export default class RoleList extends Component{
     this.dataGrid.render(container);
   }
 
+  refresh(){
+    this.dataGrid.refresh();
+  }
+
   filter(value){
     this.searchTxt = value;
     this.dataGrid.refresh();

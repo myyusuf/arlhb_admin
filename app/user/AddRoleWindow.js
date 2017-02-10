@@ -10,7 +10,31 @@ export default class AddRoleWindow extends Component{
     super(options);
     var _this = this;
 
-    var roleForm = new RoleForm({onSaveSuccess: options.onSaveSuccess});
+    this.onSaveSuccess = options.onSaveSuccess;
+
+    var roleForm = new RoleForm({
+      onValidationSuccess: function(formValue){
+        $.ajax({
+              method: "POST",
+              url: "/roles",
+              data: JSON.stringify(formValue),
+              beforeSend: function(xhr){
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+              }
+            }).done(function() {
+                $("#successNotification").jqxNotification("open");
+                // _this.window.close();
+                if(_this.onSaveSuccess){
+                  _this.onSaveSuccess();
+                }
+            }).fail(function( jqXHR, textStatus, errorThrown) {
+                var errorMessage = 'Proses gagal. Status : ' + jqXHR.status + ' [' + jqXHR.statusText + '] : ' + jqXHR.responseText;
+                $("#errorNotification").html('<div>' + errorMessage + '</div>');
+                $("#errorNotification").jqxNotification("open");
+            });
+      }
+    });
 
     var jqxOptions = {
       width: 430,

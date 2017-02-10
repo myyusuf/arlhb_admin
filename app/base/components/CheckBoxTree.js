@@ -10,7 +10,16 @@ export default class CheckBoxTree extends Tree{
   }
 
   getValue(){
-    return this.treeContainer.jqxTree('getCheckedItems');
+    var result = [];
+    var items = this.treeContainer.jqxTree('getCheckedItems');
+    for (var i=0; i<items.length; i++){
+      result.push({
+        id: items[i].id,
+        label: items[i].label,
+        checked: items[i].checked
+      });
+    }
+    return result;
   }
 
 }

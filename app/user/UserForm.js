@@ -6,6 +6,7 @@ import TextBox from '../base/components/TextBox';
 import TextArea from '../base/components/TextArea';
 import Label from '../base/components/Label';
 import RoleComboBox from './RoleComboBox';
+import BranchComboBox from './BranchComboBox';
 import LocationComboBox from './LocationComboBox';
 
 export default class UserForm extends Component{
@@ -69,6 +70,14 @@ export default class UserForm extends Component{
       }
     });
 
+    var branchComboBox = new BranchComboBox({
+      value: user.branch? user.branch.branchId : null,
+      jqxOptions:{
+        height: 25,
+        width: 270
+      }
+    });
+
     var locationComboBox = new LocationComboBox({
       value: user.location? user.location.locationId : null,
       jqxOptions:{
@@ -107,6 +116,15 @@ export default class UserForm extends Component{
         name: 'role',
         label: 'Role',
         content: roleComboBox,
+        validation:{
+          type: 'COMBOBOX',
+          rule: 'required'
+        }
+      },
+      {
+        name: 'branch',
+        label: 'Branch',
+        content: branchComboBox,
         validation:{
           type: 'COMBOBOX',
           rule: 'required'

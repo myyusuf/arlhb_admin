@@ -1,8 +1,12 @@
 export default class RestService {
 
   static post(options, csrfToken) {
+    RestService.send("POST", options, csrfToken);
+  }
+
+  static send(method, options, csrfToken) {
     $.ajax({
-          method: "POST",
+          method: method,
           url: options.url,
           data: JSON.stringify(options.data),
           beforeSend: function(xhr){

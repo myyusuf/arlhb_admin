@@ -17,6 +17,8 @@ export default class AuthoritiesTree extends Component{
       }
     });
 
+    this.onDataLoaded = options.onDataLoaded;
+
   }
 
   render(container) {
@@ -33,8 +35,12 @@ export default class AuthoritiesTree extends Component{
       url: url,
       data: {}
     }).done(function(data) {
+        _this.data = data;
         var _convertedToHierarchical = _this._convertArray(data);
         _this.checkBoxTree.refreshData(_convertedToHierarchical);
+        if(_this.onDataLoaded){
+          _this.onDataLoaded(_this.data);
+        }
     }).fail(function() {
       var errorMessage = 'Proses gagal. Status : ' + jqXHR.status + ' [' + jqXHR.statusText + '] : ' + jqXHR.responseText;
       $("#errorNotification").html('<div>' + errorMessage + '</div>');
@@ -65,6 +71,29 @@ export default class AuthoritiesTree extends Component{
 
   getValue(){
     return this.checkBoxTree.getValue();
+  }
+
+  setValue(value){
+    var _this = this;
+
+    for(var i=0; i<value.length; i++){
+      var tempTaskId = value[i] * 1000;
+
+      // console.log('tempTaskId : ' + tempTaskId);
+
+      for(var j=0; j<this.data.length; j++){
+
+        // console.log('tempTaskId : ' + tempTaskId + ", this.data[j].id : " + this.data[j].id);
+
+        if( tempTaskId == this.data[j].id){
+          this.data[j].checked = true;
+        }
+      }
+    }
+
+    var _convertedToHierarchical = _this._convertArray(_this.data);
+    _this.checkBoxTree.refreshData(_convertedToHierarchical);
+
   }
 
 }

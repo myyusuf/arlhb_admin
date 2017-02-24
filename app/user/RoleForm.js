@@ -42,7 +42,30 @@ export default class RoleForm extends Component{
         ]
       }
     ];
-    var checkBoxTree = new AuthoritiesTree({});
+    var checkBoxTree = new AuthoritiesTree({
+      onDataLoaded: function(data){
+
+        if(role.roleId){
+          var url = "/role_task_actions/" + role.roleId;
+          $.ajax({
+            method: "GET",
+            url: url,
+            data: {}
+          }).done(function(data) {
+              var taskActionIds = [];
+              for(var i=0; i<data.length; i++){
+                taskActionIds.push(data[i].taskActionId);
+              }
+              checkBoxTree.setValue(taskActionIds);
+          }).fail(function() {
+            var errorMessage = 'Proses gagal';
+            $("#errorNotification").html('<div>' + errorMessage + '</div>');
+            $("#errorNotification").jqxNotification("open");
+          });
+        }
+
+      }
+    });
 
     var formItems = [
       {

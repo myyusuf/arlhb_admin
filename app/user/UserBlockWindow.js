@@ -68,7 +68,7 @@ export default class UserBlockWindow extends Component{
     };
 
     this.window = new ConfirmationWindow({
-      title: 'Block Customer',
+      title: 'Confirm User Block/Unblock',
       saveButtonTitle: 'Confirm Blocking',
       content: form,
       onSave: function(){

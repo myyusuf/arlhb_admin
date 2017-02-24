@@ -18,7 +18,7 @@ export default class AddRoleWindow extends Component{
         RestService.post({
           url: '/roles',
           data: formValue
-        });
+        }, $("input[name='_csrf']").val());
       }
     });
 

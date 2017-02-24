@@ -12,7 +12,7 @@ export default class AuthoritiesTree extends Component{
     this.checkBoxTree = new CheckBoxTree({
       data: this.data,
       jqxOptions:{
-        height: 200,
+        height: 230,
         width: 275
       }
     });

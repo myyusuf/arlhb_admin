@@ -13,13 +13,13 @@ var customerPage = new CustomerPage({});
 var mainMenu = new MainMenu({
   onClick: function(e){
     $('#content').empty();
-    if(e == 1){
+    if(e == 58){
       rolePage.render($('#content'));
-    }else if(e == 2){
+    }else if(e == 59){
       userPage.render($('#content'));
-    }else if(e == 3){
+    }else if(e == 51){
       activeSessionPaga.render($('#content'));
-    }else if(e == 4){
+    }else if(e == 54){
       customerPage.render($('#content'));
     }
 

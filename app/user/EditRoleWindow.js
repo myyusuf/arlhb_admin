@@ -17,7 +17,7 @@ export default class EditRoleWindow extends Component{
 
     var jqxOptions = {
       width: 430,
-      height: 430,
+      height: 450,
     };
 
     this.window = new AddWindow({

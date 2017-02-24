@@ -1,6 +1,6 @@
 export default class RestService {
 
-  static post(options) {
+  static post(options, csrfToken) {
     $.ajax({
           method: "POST",
           url: options.url,
@@ -8,6 +8,7 @@ export default class RestService {
           beforeSend: function(xhr){
             xhr.setRequestHeader('Accept', 'application/json');
             xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('X-CSRF-Token', csrfToken);
           }
         }).done(function() {
             $("#successNotification").jqxNotification("open");

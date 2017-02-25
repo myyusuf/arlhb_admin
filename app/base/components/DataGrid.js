@@ -60,4 +60,9 @@ export default class DataGrid extends Component{
   addGroup(groupName){
     this.dataGridContainer.jqxGrid('addgroup', groupName);
   }
+
+  getDataRow(rowIndex){
+    var datarow = this.dataGridContainer.jqxGrid('getrowdata', rowIndex);
+    return datarow;
+  }
 }

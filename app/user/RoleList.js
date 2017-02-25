@@ -27,7 +27,7 @@ export default class RoleList extends Component{
 
     var onEditButtonClick = function(value){
       if(options.onEditButtonClick){
-        options.onEditButtonClick(value.bounddata);
+        options.onEditButtonClick(value);
       }
     }
 
@@ -50,6 +50,11 @@ export default class RoleList extends Component{
             datafield: 'actions',
             width: '30%',
             createwidget: function (row, column, value, htmlElement) {
+
+                var rowIndex = $('<input type="hidden" value="" class="myRowIndex"/>');
+                rowIndex.val(row.boundindex);
+                rowIndex.appendTo(htmlElement);
+
                 var table = $('<table style="height: 100%; width: 100%; text-align: center;"></table>');
                 var tr = $('<tr></tr>');
                 var td = $('<td style="width: 50%;"></td>');
@@ -62,14 +67,27 @@ export default class RoleList extends Component{
                 var button = $("<div style='margin: 5px;'>" + "Edit" + "</div>");
                 button.appendTo(td);
                 button.jqxButton({ theme:'light', template: "success", width: 70 });
+
+                // console.log('row.bounddata : ' + row.bounddata.roleName);
+
                 button.click(function (event) {
-                    onEditButtonClick(row);
+                    var rowIndexVal = $(htmlElement).find(':input.myRowIndex').val();
+                    // console.log('rowIndexVal : ' + rowIndexVal);
+
+                    var rowdata = _this.dataGrid.getDataRow(rowIndexVal);
+                    // console.log('rowdata : ' + rowdata.roleName);
+                    onEditButtonClick(rowdata);
                 });
 
                 td = $('<td style="width: 50%;"></td>');
                 td.appendTo(tr);
             },
             initwidget: function (row, column, value, htmlElement) {
+
+              var rowIndexVal = $(htmlElement).find(':input.myRowIndex');
+              rowIndexVal.val(row);
+
+              // console.log('initwidget value : ' + htmlElement);
                 // var imgurl = '../../images/' + value.toLowerCase() + '.png';
                 // $(htmlElement).find('.buttonValue')[0].innerHTML = value;
                 // $(htmlElement).find('img')[0].src = imgurl;

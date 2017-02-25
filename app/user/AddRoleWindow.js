@@ -17,7 +17,13 @@ export default class AddRoleWindow extends Component{
       onValidationSuccess: function(formValue){
         RestService.post({
           url: '/roles',
-          data: formValue
+          data: formValue,
+          onSuccess: function(){
+            if(options.onSaveSuccess){
+              options.onSaveSuccess();
+            }
+            _this.window.close();
+          }
         }, $("input[name='_csrf']").val());
       }
     });

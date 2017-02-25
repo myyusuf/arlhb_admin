@@ -78,7 +78,7 @@ export default class RoleForm extends Component{
         }
       },
       {
-        name: 'roleDescription',
+        name: 'description',
         label: 'Role Description',
         content: roleDescriptionTextArea,
         validation:{

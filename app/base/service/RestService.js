@@ -4,6 +4,10 @@ export default class RestService {
     RestService.send("POST", options, csrfToken);
   }
 
+  static put(options, csrfToken) {
+    RestService.send("PUT", options, csrfToken);
+  }
+
   static send(method, options, csrfToken) {
     $.ajax({
           method: method,

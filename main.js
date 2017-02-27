@@ -19,7 +19,7 @@ var mainMenu = new MainMenu({
       userPage.render($('#content'));
     }else if(e == 51){
       activeSessionPaga.render($('#content'));
-    }else if(e == 54){
+    }else if(e == 542){
       customerPage.render($('#content'));
     }
 

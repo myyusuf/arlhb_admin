@@ -56,6 +56,21 @@ export default class MainMenu extends Component{
           "parentid": "5"
       },
       {
+          "id": "541",
+          "text": "Daily Blocking",
+          "parentid": "54"
+      },
+      {
+          "id": "542",
+          "text": "Management",
+          "parentid": "54"
+      },
+      {
+          "id": "543",
+          "text": "Reward Program",
+          "parentid": "54"
+      },
+      {
           "id": "55",
           "text": "Holidays",
           "parentid": "5"

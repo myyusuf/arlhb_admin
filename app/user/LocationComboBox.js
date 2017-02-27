@@ -11,8 +11,8 @@ export default class LocationComboBox extends Component{
     }
 
     var jqxOptions = {
-      displayMember: "locationId",
-      valueMember: "name",
+      displayMember: "name",
+      valueMember: "locationId",
       placeHolder: 'Select Location',
       selectionMode: 'dropDownList',
       width: 220,
@@ -20,7 +20,7 @@ export default class LocationComboBox extends Component{
     };
 
     this.comboBox = new ComboBox({
-      url: '/locations',
+      url: '/user/locations',
       jqxOptions: jqxOptions,
       clearSelectionEnabled: true,
       value: options.value,

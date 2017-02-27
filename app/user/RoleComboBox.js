@@ -20,7 +20,7 @@ export default class RoleComboBox extends Component{
     };
 
     this.comboBox = new ComboBox({
-      url: '/roles',
+      url: '/all_roles',
       jqxOptions: jqxOptions,
       clearSelectionEnabled: true,
       value: options.value,

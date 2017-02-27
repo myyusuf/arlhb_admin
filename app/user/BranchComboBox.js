@@ -11,8 +11,8 @@ export default class BranchComboBox extends Component{
     }
 
     var jqxOptions = {
-      displayMember: "branchId",
-      valueMember: "name",
+      displayMember: "corpEntityName",
+      valueMember: "corpEntityId",
       placeHolder: 'Select Branch',
       selectionMode: 'dropDownList',
       width: 220,
@@ -20,7 +20,7 @@ export default class BranchComboBox extends Component{
     };
 
     this.comboBox = new ComboBox({
-      url: '/branches',
+      url: '/user/branches',
       jqxOptions: jqxOptions,
       clearSelectionEnabled: true,
       value: options.value,

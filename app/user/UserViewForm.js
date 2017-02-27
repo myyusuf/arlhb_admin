@@ -52,7 +52,7 @@ export default class UserViewForm extends Component{
     });
 
     var mobile1Label = new Label({
-      text: user.mobile1 ? user.mobile1 : '-',
+      text: user.mobilePhoneNumber ? user.mobilePhoneNumber : '-',
       jqxOptions:{
         height: 25,
         width: 270

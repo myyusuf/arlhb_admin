@@ -61,7 +61,7 @@ export default class UserPage extends Component{
     this.searchText = new SearchText({
       placeHolder: 'User Name',
       onSearch: function(value){
-        _this.roleList.filter(value);
+        _this.userList.filter(value);
       }
     });
   }

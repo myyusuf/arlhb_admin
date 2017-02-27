@@ -14,9 +14,12 @@ export default class UserList extends Component{
         datafields: [
           { name: 'employeeId', type: 'string' },
           { name: 'firstName', type: 'string' },
-          { name: 'description', type: 'string' },
+          { name: 'address', type: 'string' },
+          { name: 'email', type: 'string' },
+          { name: 'mobilePhoneNumber', type: 'string' },
           { name: 'role'},
           { name: 'roleName', type: 'string', map: 'role>roleName' },
+          { name: 'location', type: 'string' },
         ],
         id: "employeeId",
         url: "/users"

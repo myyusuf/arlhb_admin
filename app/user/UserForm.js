@@ -20,7 +20,7 @@ export default class UserForm extends Component{
     if(options.data){
       user = options.data;
     }
-    this.onSaveSuccess = options.onSaveSuccess;
+    this.onValidationSuccess = options.onValidationSuccess;
 
     var idLabel = new Label({
       text: user.employeeId,
@@ -71,7 +71,7 @@ export default class UserForm extends Component{
     });
 
     var branchComboBox = new BranchComboBox({
-      value: user.branch? user.branch.branchId : null,
+      value: user.branch? user.branch.corpEntityId : null,
       jqxOptions:{
         height: 25,
         width: 270
@@ -144,27 +144,10 @@ export default class UserForm extends Component{
       items: formItems,
       labelColumnWidth: '120px',
       onValidationSuccess: function(formValue){
-
         console.log(formValue);
-        // $.ajax({
-        //       method: "POST",
-        //       url: "/roles",
-        //       data: JSON.stringify(formValue),
-        //       beforeSend: function(xhr){
-        //         xhr.setRequestHeader('Accept', 'application/json');
-        //         xhr.setRequestHeader('Content-Type', 'application/json');
-        //       }
-        //     }).done(function() {
-        //         $("#successNotification").jqxNotification("open");
-        //         _this.window.close();
-        //         if(_this.onSaveSuccess){
-        //           _this.onSaveSuccess();
-        //         }
-        //     }).fail(function( jqXHR, textStatus, errorThrown) {
-        //         var errorMessage = 'Proses gagal. Status : ' + jqXHR.status + ' [' + jqXHR.statusText + '] : ' + jqXHR.responseText;
-        //         $("#errorNotification").html('<div>' + errorMessage + '</div>');
-        //         $("#errorNotification").jqxNotification("open");
-        //     });
+        if(_this.onValidationSuccess){
+          _this.onValidationSuccess(formValue);
+        }
       }
     }
 

@@ -23,7 +23,7 @@ export default class UserPage extends Component{
       var viewUserWindow = new ViewUserWindow({
         data: value,
         onSaveSuccess: function(){
-          _this.dataGrid.refresh();
+          _this.userList.refresh();
         }
       });
       viewUserWindow.render($('#dialogWindowContainer'));
@@ -34,7 +34,7 @@ export default class UserPage extends Component{
       var editUserWindow = new EditUserWindow({
         data: value,
         onSaveSuccess: function(){
-          _this.dataGrid.refresh();
+          _this.userList.refresh();
         }
       });
       editUserWindow.render($('#dialogWindowContainer'));
@@ -45,7 +45,7 @@ export default class UserPage extends Component{
       var userBlockWindow = new UserBlockWindow({
         data: value,
         onSaveSuccess: function(){
-          _this.dataGrid.refresh();
+          _this.userList.refresh();
         }
       });
       userBlockWindow.render($('#dialogWindowContainer'));

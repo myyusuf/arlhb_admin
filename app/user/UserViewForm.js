@@ -68,7 +68,7 @@ export default class UserViewForm extends Component{
     });
 
     var branchLabel = new Label({
-      text: user.branch? user.branch.branchName : '-',
+      text: user.branch? user.branch.corpEntityName : '-',
       jqxOptions:{
         height: 25,
         width: 270
@@ -76,7 +76,7 @@ export default class UserViewForm extends Component{
     });
 
     var locationLabel = new Label({
-      text: user.location? user.location.locationName : '-',
+      text: user.location? user.location.name : '-',
       jqxOptions:{
         height: 25,
         width: 270

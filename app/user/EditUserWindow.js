@@ -3,6 +3,7 @@ import Form from '../base/components/Form';
 import AddWindow from '../base/components/AddWindow';
 import Component from '../base/components/Component';
 import UserForm from './UserForm';
+import RestService from '../base/service/RestService';
 
 export default class EditUserWindow extends Component{
 
@@ -12,7 +13,18 @@ export default class EditUserWindow extends Component{
 
     var userForm = new UserForm({
       data: options.data,
-      onSaveSuccess: options.onSaveSuccess
+      onValidationSuccess: function(formValue){
+        RestService.put({
+          url: '/users/' + options.data.employeeId,
+          data: formValue,
+          onSuccess: function(){
+            if(options.onSaveSuccess){
+              options.onSaveSuccess();
+            }
+            _this.window.close();
+          }
+        }, $("input[name='_csrf']").val());
+      }
     });
 
     var jqxOptions = {

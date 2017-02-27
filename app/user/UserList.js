@@ -16,10 +16,13 @@ export default class UserList extends Component{
           { name: 'firstName', type: 'string' },
           { name: 'address', type: 'string' },
           { name: 'email', type: 'string' },
+          { name: 'status', type: 'number' },
           { name: 'mobilePhoneNumber', type: 'string' },
           { name: 'role'},
           { name: 'roleName', type: 'string', map: 'role>roleName' },
-          { name: 'location', type: 'string' },
+          { name: 'branch'},
+          { name: 'location'},
+          { name: 'locationName', type: 'string', map: 'location>name' },
         ],
         id: "employeeId",
         url: "/users"
@@ -63,7 +66,7 @@ export default class UserList extends Component{
           { text: 'ID', datafield: 'employeeId' },
           { text: 'Name', datafield: 'firstName'},
           { text: 'Status', datafield: 'status'},
-          { text: 'Location', datafield: 'location'},
+          { text: 'Location', datafield: 'locationName'},
           { text: 'Role', datafield: 'roleName'},
           {
             text: 'Actions',
@@ -120,6 +123,10 @@ export default class UserList extends Component{
 
   render(container) {
     this.dataGrid.render(container);
+  }
+
+  refresh(){
+    this.dataGrid.refresh();
   }
 
   filter(value){

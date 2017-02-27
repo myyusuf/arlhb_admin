@@ -4,11 +4,13 @@ import RolePage from "./app/user/RolePage";
 import UserPage from "./app/user/UserPage";
 import CustomerPage from "./app/customer/CustomerPage";
 import ActiveSessionPage from "./app/user/ActiveSessionPage";
+import CorporateEntityPage from "./app/sysadmin/CorporateEntityPage";
 
 var rolePage = new RolePage({});
 var userPage = new UserPage({});
 var activeSessionPaga = new ActiveSessionPage({});
 var customerPage = new CustomerPage({});
+var corporateEntityPage = new CorporateEntityPage({});
 
 var mainMenu = new MainMenu({
   onClick: function(e){
@@ -21,6 +23,8 @@ var mainMenu = new MainMenu({
       activeSessionPaga.render($('#content'));
     }else if(e == 542){
       customerPage.render($('#content'));
+    }else if(e == 52){
+      corporateEntityPage.render($('#content'));
     }
 
   }

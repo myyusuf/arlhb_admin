@@ -15,7 +15,7 @@ export default class Tree extends Component{
     var treeContainer = $('<div></div>');
     treeContainer.appendTo(container);
 
-    this.jqxOptions['source'] = this.data
+    this.jqxOptions['source'] = this.data;
     treeContainer.jqxTree(this.jqxOptions);
 
     treeContainer.on('itemClick',function (event)

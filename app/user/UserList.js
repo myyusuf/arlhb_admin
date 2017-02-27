@@ -35,19 +35,19 @@ export default class UserList extends Component{
 
     var onViewButtonClick = function(value){
       if(options.onViewButtonClick){
-        options.onViewButtonClick(value.bounddata);
+        options.onViewButtonClick(value);
       }
     }
 
     var onEditButtonClick = function(value){
       if(options.onEditButtonClick){
-        options.onEditButtonClick(value.bounddata);
+        options.onEditButtonClick(value);
       }
     }
 
     var onBlockButtonClick = function(value){
       if(options.onBlockButtonClick){
-        options.onBlockButtonClick(value.bounddata);
+        options.onBlockButtonClick(value);
       }
     }
 
@@ -73,41 +73,51 @@ export default class UserList extends Component{
             datafield: 'actions',
             // width: 325,
             createwidget: function (row, column, value, htmlElement) {
-                var table = $('<table style="height: 100%; width: 100%; text-align: center;"></table>');
-                var tr = $('<tr></tr>');
-                var td = $('<td></td>');
-                table.appendTo(htmlElement);
-                tr.appendTo(table);
-                td.appendTo(tr);
-                var button1 = $("<div style='margin: 2.4px;'>" + "View" + "</div>");
-                button1.appendTo(td);
-                button1.jqxButton({ theme:'light', template: "default"});
-                button1.click(function (event) {
-                    onViewButtonClick(row);
-                });
 
-                td = $('<td></td>');
-                td.appendTo(tr);
-                var button2 = $("<div style='margin: 2.4px;'>" + "Edit" + "</div>");
-                button2.appendTo(td);
-                button2.jqxButton({ theme:'light', template: "success"});
-                button2.click(function (event) {
-                    onEditButtonClick(row);
-                });
+              var rowIndex = $('<input type="hidden" value="" class="myRowIndex"/>');
+              rowIndex.val(row.boundindex);
+              rowIndex.appendTo(htmlElement);
 
-                td = $('<td style="width: 50%;"></td>');
-                td.appendTo(tr);
-                var button3 = $("<div style='margin: 2.4px;'>" + "Block / Unblock" + "</div>");
-                button3.appendTo(td);
-                button3.jqxButton({ theme:'light', template: "danger"});
-                button3.click(function (event) {
-                    onBlockButtonClick(row);
-                });
+              var table = $('<table style="height: 100%; width: 100%; text-align: center;"></table>');
+              var tr = $('<tr></tr>');
+              var td = $('<td></td>');
+              table.appendTo(htmlElement);
+              tr.appendTo(table);
+              td.appendTo(tr);
+              var button1 = $("<div style='margin: 2.4px;'>" + "View" + "</div>");
+              button1.appendTo(td);
+              button1.jqxButton({ theme:'light', template: "default"});
+              button1.click(function (event) {
+                var rowIndexVal = $(htmlElement).find(':input.myRowIndex').val();
+                var rowdata = _this.dataGrid.getDataRow(rowIndexVal);
+                onViewButtonClick(rowdata);
+              });
+
+              td = $('<td></td>');
+              td.appendTo(tr);
+              var button2 = $("<div style='margin: 2.4px;'>" + "Edit" + "</div>");
+              button2.appendTo(td);
+              button2.jqxButton({ theme:'light', template: "success"});
+              button2.click(function (event) {
+                var rowIndexVal = $(htmlElement).find(':input.myRowIndex').val();
+                var rowdata = _this.dataGrid.getDataRow(rowIndexVal);
+                onEditButtonClick(rowdata);
+              });
+
+              td = $('<td style="width: 50%;"></td>');
+              td.appendTo(tr);
+              var button3 = $("<div style='margin: 2.4px;'>" + "Block / Unblock" + "</div>");
+              button3.appendTo(td);
+              button3.jqxButton({ theme:'light', template: "danger"});
+              button3.click(function (event) {
+                var rowIndexVal = $(htmlElement).find(':input.myRowIndex').val();
+                var rowdata = _this.dataGrid.getDataRow(rowIndexVal);
+                onBlockButtonClick(rowdata);
+              });
             },
             initwidget: function (row, column, value, htmlElement) {
-                // var imgurl = '../../images/' + value.toLowerCase() + '.png';
-                // $(htmlElement).find('.buttonValue')[0].innerHTML = value;
-                // $(htmlElement).find('img')[0].src = imgurl;
+              var rowIndexVal = $(htmlElement).find(':input.myRowIndex');
+              rowIndexVal.val(row);
             }
           }
         ],

@@ -21,6 +21,11 @@ export default class MainMenu extends React.Component {
               "subMenuWidth": '250px'
           },
           {
+              "id": "21",
+              "text": "Cash",
+              "parentid": "2"
+          },
+          {
               "id": "3",
               "text": "Customer Transaction",
               "parentid": "-1"

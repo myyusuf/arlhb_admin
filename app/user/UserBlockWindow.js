@@ -36,27 +36,16 @@ export default class UserBlockWindow extends Component{
       items: formItems,
       labelColumnWidth: '120px',
       onValidationSuccess: function(formValue){
-
-        console.log(formValue);
-        // $.ajax({
-        //       method: "POST",
-        //       url: "/roles",
-        //       data: JSON.stringify(formValue),
-        //       beforeSend: function(xhr){
-        //         xhr.setRequestHeader('Accept', 'application/json');
-        //         xhr.setRequestHeader('Content-Type', 'application/json');
-        //       }
-        //     }).done(function() {
-        //         $("#successNotification").jqxNotification("open");
-        //         _this.window.close();
-        //         if(_this.onSaveSuccess){
-        //           _this.onSaveSuccess();
-        //         }
-        //     }).fail(function( jqXHR, textStatus, errorThrown) {
-        //         var errorMessage = 'Proses gagal. Status : ' + jqXHR.status + ' [' + jqXHR.statusText + '] : ' + jqXHR.responseText;
-        //         $("#errorNotification").html('<div>' + errorMessage + '</div>');
-        //         $("#errorNotification").jqxNotification("open");
-        //     });
+        RestService.put({
+          url: '/user_block/' + options.data.employeeId,
+          data: formValue,
+          onSuccess: function(){
+            if(options.onSaveSuccess){
+              options.onSaveSuccess();
+            }
+            _this.window.close();
+          }
+        }, $("input[name='_csrf']").val());
       }
     }
 

@@ -17,8 +17,27 @@ export default class MainMenu extends Component{
       {
           "id": "2",
           "text": "Customer Payment",
-          "parentid": "-1",
-          "subMenuWidth": '250px'
+          "parentid": "-1"
+      },
+      {
+          "id": "21",
+          "text": "Cash",
+          "parentid": "2"
+      },
+      {
+          "id": "22",
+          "text": "Deposit Cash to Bank",
+          "parentid": "2"
+      },
+      {
+          "id": "23",
+          "text": "Non Cash",
+          "parentid": "2"
+      },
+      {
+          "id": "24",
+          "text": "Reversal",
+          "parentid": "2"
       },
       {
           "id": "3",

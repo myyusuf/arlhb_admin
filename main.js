@@ -5,12 +5,14 @@ import UserPage from "./app/user/UserPage";
 import CustomerPage from "./app/customer/CustomerPage";
 import ActiveSessionPage from "./app/user/ActiveSessionPage";
 import CorporateEntityPage from "./app/sysadmin/CorporateEntityPage";
+import LocationPage from "./app/sysadmin/LocationPage";
 
 var rolePage = new RolePage({});
 var userPage = new UserPage({});
 var activeSessionPaga = new ActiveSessionPage({});
 var customerPage = new CustomerPage({});
 var corporateEntityPage = new CorporateEntityPage({});
+var locationPage = new LocationPage({});
 
 var mainMenu = new MainMenu({
   onClick: function(e){
@@ -25,6 +27,8 @@ var mainMenu = new MainMenu({
       customerPage.render($('#content'));
     }else if(e == 52){
       corporateEntityPage.render($('#content'));
+    }else if(e == 56){
+      locationPage.render($('#content'));
     }
 
   }
